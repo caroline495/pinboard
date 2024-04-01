@@ -1,0 +1,100 @@
+nav {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.pinboard-title {
+    font-size: 19px;
+    font-weight: 600;
+}
+
+#left-logo {
+    width: 35px;
+    height: auto;
+    margin-right: 4px;
+}
+.left-buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+}
+
+
+.left-inner-button, .right-inner-button {
+    /* margin-left: 3px; */
+    margin-right: 35px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.right-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.login-button {
+    background-color: rgb(230, 0, 35);
+    /* border-radius: px; */
+    color:white;
+    font-weight: 600;
+    margin-right: 8px;
+    width: 70px;
+    height: 40px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.signup-button {
+    background-color: rgb(233, 233, 233);
+    font-weight: 600;
+    margin-right: 8px;
+    width: 81px;
+    height: 40px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+h1 {
+    color:rgb(204, 0, 0);
+    font-size: 20px;
+}
+
+/* FOR LOGGED IN USER NAV BAR */
+
+.search-bar {
+    width: 55%;
+    background-color:powderblue;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.login-icon-buttons {
+    display: flex;
+    
+}
+
+.icon-button {
+    margin: 5px;
+}
