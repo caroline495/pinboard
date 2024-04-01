@@ -19,7 +19,7 @@ const SessionModal = ({ modalState, setModalState }) => {
                 .then(() => setModalState(null))
                 .catch(async res => {
                     let data = await res.json();
-                    setErrors(data);
+                    setErrors(data.errors);
                   });
         } else {
             dispatch(loginUser({ email, password }))
@@ -47,6 +47,7 @@ const SessionModal = ({ modalState, setModalState }) => {
                         <span className='welcome'>Welcome to Pinboard</span> 
                         <div className='signup-welcome-caption'>Find new ideas to try</div>
 
+                        <div className='errors'>{errors.map((err, idx) => (<p key={idx}>{err}</p>))}</div>
                         <label><div className='input-label'>Username</div>
                             <input placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} />
                         </label>
@@ -82,8 +83,9 @@ const SessionModal = ({ modalState, setModalState }) => {
                             </div>
                             <img src={logo} />
                             <span className='welcome'>Welcome to Pinboard</span> <br></br>
+                            <div className='errors'>{errors.map((err, idx) => (<p key={idx}>{err}</p>))}</div>
                             <label>
-                                <div className='input-label'>Email </div>
+                                <div className='email-input-label'>Email </div>
                                 <input placeholder='Email' value={email} onChange={e => setEmail(e.target.value)}/>
                             </label>
         
@@ -101,8 +103,10 @@ const SessionModal = ({ modalState, setModalState }) => {
                                 <span className='disclosure-text-inline'> Privacy Policy. Notice at collection.</span></div>    
                             <div className='line-after-disclosure'></div>
                             <div className='bottom-text'>Not on Pinterest yet? Sign up</div>
-                            <div className='bottom-text'>Are you a business? Get Started here!</div>
+                            <div className='bottom-text-business'>Are you a business? Get Started here!</div>
+                            
                         </form>   
+                        
                     </div>
                 </>
             )
