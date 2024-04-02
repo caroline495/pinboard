@@ -46,7 +46,7 @@ class ApplicationController < ActionController::API
     end
 
     def attach_authenticity_token
-        headers['X-CSRF-Token'] = masked_authenticity_token
+        headers['X-CSRF-Token'] = form_authenticity_token
         # masked - for one session, form - for one cycle
     end
     

@@ -188,12 +188,12 @@ h1 {
     background-color: rgb(233, 233, 233);
 }
 
-.dropdown-content {
-    /* width: 25px;
+/* .dropdown-content {
+    width: 25px;
     height: 25px;
-    background-color: aquamarine; */
+    background-color: aquamarine; 
 
-}
+} */
 
 .dropdown {
     position: relative;
