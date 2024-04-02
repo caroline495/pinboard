@@ -12,7 +12,9 @@ class Api::UsersController < ApplicationController
       # render json: @user
       render :show
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity # status 422 too
+      error_hash = @user.errors.group_by_attribute.transform_values { |errors| errors.map(&:full_message) }
+      render json: { errors: error_hash }, status: :unprocessable_entity # status 422 too
+      # render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity # status 422 too
     end
 
   end

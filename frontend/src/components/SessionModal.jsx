@@ -10,7 +10,17 @@ const SessionModal = ({ modalState, setModalState }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState(''); 
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
+
+    const hasErrors = !!Object.entries(errors).length;
+    console.log(errors);
+    console.log(hasErrors)
+    // if (hasErrors) console.log(errors.length);
+    // const handleErrors = (error) => {
+    //     {if (error.include("email").toLowercase()) {
+    //         <p>{err}</p>
+    //     }}
+    // }
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -60,23 +70,27 @@ const SessionModal = ({ modalState, setModalState }) => {
                         <span className='welcome'>Welcome to Pinboard</span> 
                         <div className='signup-welcome-caption'>Find new ideas to try</div>
 
-                        <div className='errors'>{errors.map((err, idx) => (<p key={idx}>{err}</p>))}</div>
+                        {/* {hasErrors ? <div className='errors'>{errors.map((err, idx) => (<p key={idx}>{err}</p>))}</div> : ""} */}
                         <label><div className='input-label'>Username</div>
                             <input placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} />
                         </label>
-                        
+                        {hasErrors && errors.username ? <div className='errors'><p>{errors.username[0]}</p></div> : ""}
+
                         <label><div className='input-label'>Email</div>
                             <input placeholder='Email' value={email} onChange={e => setEmail(e.target.value)}/>
                         </label>
-    
+                        {hasErrors && errors.email ? <div className='errors'><p>{errors.email[0]}</p></div> : ""}
+
                         <label><div className='input-label'>Password</div>
                             <input placeholder='Password' 
                             type='password' value={password} onChange={e => setPassword(e.target.value)} />
                         </label>
-    
+                        {hasErrors && errors.password ? <div className='errors'><p>{errors.password[0]}</p></div> : ""}
+                        
                         <button id='signup-submit' className='form-submit-button' type='submit'>Continue</button>
                         <div className='or-break'><span>OR</span></div>
                         <div className='fake-google-button'><span>Continue with Google</span></div>
+
                         <div className='disclosure-text'>By continuing, you agree to Pinterest's <span className='disclosure-text-inline'>Terms of Service</span> and acknowledge you've read our 
                                 <span className='disclosure-text-inline'> Privacy Policy. Notice at collection.</span></div>    
                         <div className='signup-bottom-text'>Already a member? Log in</div>
@@ -106,12 +120,12 @@ const SessionModal = ({ modalState, setModalState }) => {
                                 </svg>
                             </div>
                             <span className='welcome'>Welcome to Pinboard</span> <br></br>
-                            <div className='errors'>{errors.map((err, idx) => (<p key={idx}>{err}</p>))}</div>
+                            {hasErrors ? <div className='errors'>{errors.map((err, idx) => (<p key={idx}>{err}</p>))}</div> : ""}
                             <label>
                                 <div className='email-input-label'>Email </div>
                                 <input placeholder='Email' value={email} onChange={e => setEmail(e.target.value)}/>
                             </label>
-        
+                            
                             <label><div className='input-label'>Password</div>
                                 <input placeholder='Password' 
                                 type='password' value={password} onChange={e => setPassword(e.target.value)} />
