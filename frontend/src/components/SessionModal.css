@@ -28,21 +28,15 @@ img {
     padding-bottom: 10px;
 }
 
+.logo {
+    fill: rgb(230, 0, 35);
+}
+
 .form {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-
-/* .login-form {
-    /* border-radius: 20px;
-    height: 50vh;
-    width: 50vw;
-    position: absolute;
-    top: 25vh;
-    left: 25vw;
-    background-color: white;
-} */
 
 .close-button {
     width: 20px;
