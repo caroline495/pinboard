@@ -4,8 +4,11 @@ import { selectCurrentUser } from '../store/sessionReducer';
 import { useState } from 'react';
 import SessionModal from './SessionModal';
 import logo from '../assets/Pinterest-logo.png';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 
 const NavBar = props => {
+    const navigate = useNavigate();
     const currentUser = useSelector(selectCurrentUser);
     const dispatch = useDispatch();
     const [modalState, setModalState] = useState(null);
@@ -15,12 +18,17 @@ const NavBar = props => {
         setDropdownOpen(!dropdownOpen);
     }
 
+    const handleLogoClick = () => {
+        navigate('/');
+    }
+
     const sessionNav = () => {
         if (currentUser) {
             // SIGNED IN -- HOME PAGE NAV BAR
             return (
+                <>
                 <nav>
-                    <div className='logo'>
+                    <div className='logo' onClick={handleLogoClick}>
                         <svg aria-label="Pinterest" height="24" role="img" viewBox="0 0 24 24" width="24">
                             <path className="pinterest-logo" d="M0 12a12 12 0 0 0 7.73 11.22 12 12 0 0 1 .03-3.57l1.4-5.94S8.8 13 8.8 11.94c0-1.66.96-2.9 
                             2.16-2.9 1.02 0 1.51.77 1.51 1.68 0 1.03-.65 2.56-.99 3.98-.28 1.19.6 2.16 1.77 2.16 2.12 0 3.76-2.24 
@@ -29,9 +37,11 @@ const NavBar = props => {
                             4.12-2.6 7.43-6.2 7.43-1.21 0-2.35-.63-2.74-1.37l-.74 2.84a14 14 0 0 1-1.55 3.23A12 12 0 1 0 0 12"></path>
                         </svg>
                     </div>
-                    <div className='login-text-button'>Home</div>
-                    <div className='login-text-button'>Explore</div>
-                    <div className='login-text-button'>Create</div>
+                    <div className='login-text-button'><span>Home</span></div>
+                    <div className='login-text-button'><span>Explore</span></div>
+                   <NavLink to="/pin-creation-tool">
+                    <div className='login-text-button'><span>Create</span></div>
+                    </NavLink>
                    
                     <div className='search-bar'>
                         <input className='search-bar' placeholder='Search your Pins'/>
@@ -82,6 +92,9 @@ const NavBar = props => {
 
                     </div>
                 </nav>
+
+                    
+                </>
             )
         } else {
             // FRONT PAGE -- NOT SIGNED IN NAV BAR

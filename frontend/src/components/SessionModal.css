@@ -79,7 +79,15 @@ p {
     margin-bottom: 4px;
 }
 
-input {
+.login-modal-input {
+    height: 42px;
+    width: 268px;
+    border:2px solid rgb(205, 205, 205);
+    border-radius: 16px;
+    font-size: 16px;
+}
+
+.signup-modal-input {
     height: 42px;
     width: 268px;
     border:2px solid rgb(205, 205, 205);

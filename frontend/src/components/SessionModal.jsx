@@ -13,8 +13,8 @@ const SessionModal = ({ modalState, setModalState }) => {
     const [errors, setErrors] = useState({});
 
     const hasErrors = !!Object.entries(errors).length;
-    console.log(errors);
-    console.log(hasErrors)
+    // console.log(errors); // for testing 
+    // console.log(hasErrors) // for testing to make sure hasErrors has right boolean value in different conditions
     // if (hasErrors) console.log(errors.length);
     // const handleErrors = (error) => {
     //     {if (error.include("email").toLowercase()) {
@@ -72,17 +72,17 @@ const SessionModal = ({ modalState, setModalState }) => {
 
                         {/* {hasErrors ? <div className='errors'>{errors.map((err, idx) => (<p key={idx}>{err}</p>))}</div> : ""} */}
                         <label><div className='input-label'>Username</div>
-                            <input placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} />
+                            <input className='signup-modal-input' placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} />
                         </label>
                         {hasErrors && errors.username ? <div className='errors'><p>{errors.username[0]}</p></div> : ""}
 
                         <label><div className='input-label'>Email</div>
-                            <input placeholder='Email' value={email} onChange={e => setEmail(e.target.value)}/>
+                            <input className='signup-modal-input' placeholder='Email' value={email} onChange={e => setEmail(e.target.value)}/>
                         </label>
                         {hasErrors && errors.email ? <div className='errors'><p>{errors.email[0]}</p></div> : ""}
 
                         <label><div className='input-label'>Password</div>
-                            <input placeholder='Password' 
+                            <input className='signup-modal-input' placeholder='Password' 
                             type='password' value={password} onChange={e => setPassword(e.target.value)} />
                         </label>
                         {hasErrors && errors.password ? <div className='errors'><p>{errors.password[0]}</p></div> : ""}
@@ -123,17 +123,19 @@ const SessionModal = ({ modalState, setModalState }) => {
                             {hasErrors ? <div className='errors'>{errors.map((err, idx) => (<p key={idx}>{err}</p>))}</div> : ""}
                             <label>
                                 <div className='email-input-label'>Email </div>
-                                <input placeholder='Email' value={email} onChange={e => setEmail(e.target.value)}/>
+                                <input className='login-modal-input' placeholder='Email' value={email} onChange={e => setEmail(e.target.value)}/>
                             </label>
                             
                             <label><div className='input-label'>Password</div>
-                                <input placeholder='Password' 
+                                <input className='login-modal-input' placeholder='Password' 
                                 type='password' value={password} onChange={e => setPassword(e.target.value)} />
                             </label>
                             
                             <div className='forgot-password-line'><span >Forgot your password?</span></div>
                             <button className='form-submit-button' type='submit'>Log in</button>
+                            
                             <div className='or-break'><span>OR</span></div>
+                            
                             <div className='fake-facebook-button'><span>Continue with Facebook</span></div>
                             <div className='fake-google-button'><span>Continue with Google</span></div>
                             <div className='disclosure-text'>By continuing, you agree to Pinterest's <span className='disclosure-text-inline'>Terms of Service</span> and acknowledge you've read our 

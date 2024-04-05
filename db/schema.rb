@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_29_154024) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_02_225446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pins", force: :cascade do |t|
+    t.bigint "creator_id", null: false
+    t.text "description"
+    t.string "title"
+    t.text "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_pins_on_creator_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -26,4 +36,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_154024) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "pins", "users", column: "creator_id"
 end

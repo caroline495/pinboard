@@ -79,7 +79,8 @@ const initialState = JSON.parse(sessionStorage.getItem('currentUser'));
 
 // initial value of state will always match what you have in sessionStorage
 const sessionReducer = (state = initialState, action) => {
-    // when initialState is {} --> if you are logged in + refresh the page and do store.getState(), the session shows null even though still logged in in the backend
+    // when initialState is {} --> if you are logged in + refresh the page and do store.getState(), 
+    // the session shows null even though still logged in in the backend.
     // still able to log that person out successfully
     const nextState = { ...state }
 

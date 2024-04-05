@@ -3,15 +3,40 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import NavBar from './components/NavBar'
+import PinForm from './components/PinForm'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+
+function Layout() {
+  return (
+    <>
+      <NavBar />
+      <Outlet />    
+    </>
+
+  )
+}
+
+const router = createBrowserRouter([
+  {
+   path: '/',
+   element: 
+    <>
+      <NavBar />
+      <Outlet />
+    </>,
+   children: [
+    {
+      path: 'pin-creation-tool',
+      element: <PinForm />
+    }
+   ] 
+  }
+]);
 
 function App() {
   
+  return <RouterProvider router={router} />
 
-  return (
-    <>
-     <NavBar />
-    </>
-  )
 }
 
 export default App
