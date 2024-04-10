@@ -47,12 +47,18 @@ export const fetchPins = () => dispatch => {
         .then(data => dispatch(receivePins(data)))
 }
 
+// we do not stringify formData
 export const createPin = (postData) => dispatch => {
     return fetch(`/api/pins`, {
         method: 'POST',
-        body: JSON.stringify(postData),
+        // change to body: postData, headers: { 'Accept': 'application/json' } for formData 
+        // body: JSON.stringify(postData),
+        // headers: {
+        //     'Content-Type': 'application/json'
+        // }
+        body: postData,
         headers: {
-            'Content-Type': 'application/json'
+            'Accept': 'application/json'
         }
         })
         .then(res => {
@@ -89,8 +95,8 @@ export const deletePin = (pinId) => dispatch => {
 }
 
 // SELECTORS
-export const selectPins = createSelector(state => state.pins, pins => Object.values(teas));
-
+export const selectPins = createSelector(state => state.pins, pins => Object.values(pins));
+export const selectPin = pinId => state => state.pins[pinId] ? state.pins[pinId] : null;
 
 // REDUCER
 const pinReducer = (state= {}, action) => {

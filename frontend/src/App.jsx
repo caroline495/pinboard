@@ -5,6 +5,10 @@ import './App.css'
 import NavBar from './components/NavBar'
 import PinForm from './components/PinForm'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import UserProfile from './components/UserProfile'
+import BoardIndex from './components/BoardIndex'
+import PinIndex from './components/PinIndex'
+import PinPage from './components/PinPage'
 
 function Layout() {
   return (
@@ -28,6 +32,39 @@ const router = createBrowserRouter([
     {
       path: 'pin-creation-tool',
       element: <PinForm />
+    },
+    {
+      path: ':username/',
+      element: 
+      <>
+        <UserProfile />
+        <Outlet />
+      </>,
+      children: [
+        {
+          index: true,
+          element:
+          <BoardIndex />
+        },
+        {
+          path: '_saved/',
+          element:
+          <>
+            <BoardIndex />
+          </>
+        },
+        {
+          path: '_created/',
+          element:
+          <>
+            <PinIndex />
+          </>
+        }
+      ]
+    },
+    {
+      path: 'pin/:pinId/',
+      element: <PinPage />
     }
    ] 
   }

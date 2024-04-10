@@ -13,6 +13,8 @@ const NavBar = props => {
     const dispatch = useDispatch();
     const [modalState, setModalState] = useState(null);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+  
+    const username = currentUser? currentUser.username : 'none';
 
     const handleOpen = () => {
         setDropdownOpen(!dropdownOpen);
@@ -21,6 +23,15 @@ const NavBar = props => {
     const handleLogoClick = () => {
         navigate('/');
     }
+
+    const handleProfileClick = () => {
+        navigate(`/${username}/`);
+    }
+
+    const handleLogoutClick = () => {
+        dispatch(logoutUser());
+        navigate('/');
+    }  
 
     const sessionNav = () => {
         if (currentUser) {
@@ -60,8 +71,8 @@ const NavBar = props => {
                             </svg>
                         </div>
                         
-                        <div className='circle-button'>
-                            <span>U</span>
+                        <div className='circle-button' onClick={handleProfileClick}>
+                            <span>{username[0].toUpperCase()}</span>
                         </div>
 
                         {/* <div className='icon-button' onClick={() => dispatch(logoutUser())}></div> */}
@@ -75,11 +86,13 @@ const NavBar = props => {
                             {dropdownOpen? 
                                 (// <div className='dropdown-content'> 
                                     <div className='menu'>
-                                        <li className='menu-item-account'>
-                                            <div>Account: {currentUser.username}</div>
+                                        
+                                        <li className='menu-item-account' onClick={handleProfileClick}>
+                                            <div className='menu-account' >Account: {currentUser.username}</div>
                                             <div className='menu-email'>{currentUser.email}</div>
                                         </li>
-                                        <li className='menu-item-logout' onClick={() => dispatch(logoutUser())}>
+
+                                        <li className='menu-item-logout' onClick={handleLogoutClick}>
                                             <div>Log out</div>
                                         </li>
                                     </div>

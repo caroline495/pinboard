@@ -21,10 +21,16 @@ const SessionModal = ({ modalState, setModalState }) => {
     //         <p>{err}</p>
     //     }}
     // }
-
+    
+    
     const handleSubmit = e => {
         e.preventDefault();
+
         if (modalState === 'signup') {
+            // const updatedEmail = email.toLowerCase();
+            // setEmail(email => email = updatedEmail);
+            // console.log(email);
+            
             dispatch(createUser({ username, email, password }))
                 .then(() => setModalState(null))
                 .catch(async res => {
@@ -53,7 +59,6 @@ const SessionModal = ({ modalState, setModalState }) => {
                                     <path d="m15.18 12 7.16-7.16a2.25 2.25 0 1 0-3.18-3.18L12 8.82 4.84 1.66a2.25 2.25 0 1 0-3.18 3.18L8.82 12l-7.16 7.16a2.25 2.25 0 1 0 3.18 3.18L12 15.18l7.16 7.16a2.24 2.24 0 0 0 3.18 0c.88-.88.88-2.3 0-3.18z"></path>
                                 </svg>
                             </div>
-                        {/* <img src={logo} /> */}
 
                         <div className='logo'>
                             <svg height="40" viewBox="-3 -3 82 82" width="40">

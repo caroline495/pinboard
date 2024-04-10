@@ -1,0 +1,124 @@
+.profile-box {
+    /* border: 1px solid black; */
+    height: 400px;
+    width: 847px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.user-circle {
+    margin-top: 30px;
+    width: 120px;
+    height: 120px;
+    background-color:rgb(233, 233, 233);
+    border-radius: 50%;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username-display {
+    font-size: 36px;
+    margin: 5px;
+}
+
+.follow-status {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.share-edit-buttons {
+    display: flex;
+    margin-bottom: 50px;
+    width: 205px;
+    justify-content: space-between;
+}
+
+.share-button {
+    width: 76px;
+    height: 48px; 
+    background-color: rgb(233, 233, 233);
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-profile-button {
+    height: 48px; 
+    width: 114px;
+    background-color: rgb(233, 233, 233);
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-view-toggle {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    font-weight: 500;
+}
+
+/* a {
+    text-decoration: none;
+    color: black;
+} */
+.index-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.index-created-button {
+    width: 77px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-saved-button {
+    width: 63px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-saved-button:hover, .index-created-button:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.active .index-saved-button:hover, .active .index-created-button:hover {
+    background-color: white;
+}
+
+.index-created-underline {
+    width: 59px;
+}
+
+.index-saved-underline {
+    width: 45px;
+}
+
+.index-created-underline, .index-saved-underline {
+    background-color: white;
+    margin-top: 0px;
+    height: 3px;
+    /* margin-left: -1px; */
+}
+
+.active .index-created-underline, 
+.active .index-saved-underline {
+    background-color: black;
+}
+

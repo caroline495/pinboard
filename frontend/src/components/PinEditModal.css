@@ -1,0 +1,104 @@
+.pin-edit-modal-background {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(25,25,25,.85);
+    /* position: fixed; */
+    /* left: 0; */
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    /* overflow-x: hidden; */
+}
+
+.pin-edit-modal-content {
+    height: 100%;
+    width: 540px;
+    position: relative;
+    /* right: 25px;  */
+    /*top: 0px; */
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+.pin-edit {
+    height: 95%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 24px;
+    margin-right: 24px;
+    /* padding-top: 20px; */
+    /* border: 1px solid blue; */
+}
+
+.edit-pin-header {
+    font-size: 26px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-edit-button {
+    cursor: pointer;
+}
+/* .edit-form-text-input {
+    display: flex;
+    flex-direction: column;
+} */
+.edit-pinform-input-label{
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 0px;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+.edit-pinform-input {
+    height: 42px;
+    width: 488px;
+    border:2px solid rgb(205, 205, 205);
+    border-radius: 16px;
+    font-size: 16px;  
+    text-indent: 2%;
+    margin-bottom: 12px;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+
+}
+
+.edit-pinform-description-input {
+    height: 100px;
+    width: 468px;
+    border:2px solid rgb(205, 205, 205);
+    border-radius: 16px;
+    font-size: 16px; 
+    margin-bottom: 30px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif;
+    padding: 10px;
+}
+
+
+.edit-form-bottom-part {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.delete-pin-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    width: 80px;
+    height: 48px;
+    background-color: rgb(233, 233, 233);
+    cursor: pointer;
+}
+
+.save-pin-button{
+    cursor: pointer;
+}
