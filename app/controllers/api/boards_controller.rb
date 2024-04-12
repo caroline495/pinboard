@@ -18,6 +18,7 @@ class Api::BoardsController < ApplicationController
 
     def create
         @board = Board.new(board_params)
+        @pins = {}
 
         if @board.save
             render :show
@@ -49,7 +50,7 @@ class Api::BoardsController < ApplicationController
     private
 
     def board_params
-        params.require(:board).permit(:id, :creator_id, :description, :name, :private)
+        params.require(:board).permit(:id, :creator_id, :description, :name, :private_mode, :pins)
     end
 
 

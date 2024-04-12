@@ -1,5 +1,75 @@
-.board-status {
-    align-self: center;
+.board-index-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-boards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /* align-self: center; */
     font-weight: 500;
     margin-top: 30px;
+}
+
+.board-count {
+    margin-left: 30px;
+}
+
+.dropdown {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.board-index-menu {
+    position: absolute;
+    top: 50px;
+    /* width: 100px;  */
+    right: 30px;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
+    padding: 8px;
+}
+
+.board-index-menu li {
+    list-style-type: none;
+    margin-bottom: 4px;
+}
+
+.menu-item-create-board {
+    cursor: pointer;
+}
+.menu-item-create-board, .menu-item-create-pin {
+    width: 140px;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 6px;
+}
+
+.menu-item-create-board {
+    background-color:rgb(233, 233, 233);
+    border-radius: 8px;
+}
+
+.pin-board-options {
+    
+    margin-right: 30px;
+    min-width: 48px;
+    max-width: 48px;
+    max-height: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pin-board-options:hover {
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgb(233, 233, 233);
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_11_092845) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_12_042014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_092845) do
     t.bigint "creator_id", null: false
     t.text "description"
     t.string "name", null: false
-    t.boolean "private", null: false
+    t.boolean "private_mode", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id", "name"], name: "index_boards_on_creator_id_and_name", unique: true

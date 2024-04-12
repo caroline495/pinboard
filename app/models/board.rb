@@ -1,7 +1,7 @@
 class Board < ApplicationRecord
 
     validates :name, :creator_id, presence: true
-    validates :private, inclusion: { in: [true, false], message: 'must be true or false' }
+    validates :private_mode, inclusion: { in: [true, false], message: 'must be true or false' }
 
     belongs_to :creator,
         class_name: :User

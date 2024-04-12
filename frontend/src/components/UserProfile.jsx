@@ -5,13 +5,10 @@ import './UserProfile.css';
 import { NavLink } from "react-router-dom";
 
 const UserProfile = props => {
-    // const { username } = useParams();
-    // console.log(username);
 
     const session = useSelector(selectCurrentUser);
     const creator_id = session.id;
     const username = session.username;
-    // console.log (creator_id);
 
     return (
         <>

@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: pinboard_production
-  username: pinboard
-  password: <%= ENV["PINBOARD_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

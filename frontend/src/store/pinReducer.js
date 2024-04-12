@@ -115,7 +115,7 @@ const pinReducer = (state= {}, action) => {
             delete nextState[action.pinId];
             return nextState;
         case RECEIVE_BOARD:
-            return action.boardData.pins;
+            return action.boardData.pins ||= nextState;
         default:
             return state;
     }

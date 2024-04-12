@@ -22,7 +22,6 @@ const PinPage = () => {
         dispatch(fetchPin(pinId));
     }, [dispatch, pinId]);
 
-    // console.log(pin);
     const handleBackClick = () => {
         navigate(`/${username}/_created`);
     }

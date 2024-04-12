@@ -17,9 +17,7 @@ const BoardIndexItem = ({board}) => {
     const username = session.username;
 
     const pins = useSelector(selectPins);
-    console.log(pins, 'pins');
     const pinsInBoard = pins.filter(pin => { if (pin.boardId === board.id) return pin });
-    console.log(pinsInBoard, 'pinsInBoard');
 
     const boardName = board.name.split(' ').join('-');
 

@@ -157,6 +157,9 @@
     margin-bottom: 4px;
 }
 
+.menu-item-edit {
+    cursor: pointer;
+}
 .menu-item-edit, .menu-item-logout {
     width: 140px;
     font-size: 18px;

@@ -27,9 +27,6 @@ const SessionModal = ({ modalState, setModalState }) => {
         e.preventDefault();
 
         if (modalState === 'signup') {
-            // const updatedEmail = email.toLowerCase();
-            // setEmail(email => email = updatedEmail);
-            // console.log(email);
             
             dispatch(createUser({ username, email, password }))
                 .then(() => setModalState(null))

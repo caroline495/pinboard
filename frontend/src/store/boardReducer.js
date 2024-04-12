@@ -95,7 +95,6 @@ export const selectBoards = createSelector(state => state.boards, boards => Obje
 export const selectBoard = boardId => state => state.boards[boardId] ? state.boards[boardId] : null;
 
 // export const selectBoardbyName = createSelector(state => state.boards, boards => {
-//     console.log(boards);
 //     const boardsArray = Object.values(boards);
 //     const boardsIds = boardsArray.map(board, idx => [board.name, board.id]);
 //     return boardsIds;

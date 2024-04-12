@@ -1,5 +1,5 @@
 .board-index-link {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     height:400px;
     width: 230px;
     list-style-type: none;
@@ -12,7 +12,7 @@
 }
 
 .board-index-image-container {
-    /* height: 350px; */
+    height: 350px;
     /* width: fit-content;  */
     border-radius: 16px;
     background-color:lightgray;

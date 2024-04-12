@@ -21,9 +21,7 @@ const PinForm = props => {
 
     const [errors, setErrors] = useState({});
     const [pinCreated, setPinCreated] = useState(false);
-    // console.log('***********page render********');
     const pins = useSelector(selectPins);
-    // console.log(pins,'pins here');
     const [lastPin, setLastPin] = useState(pins[pins.length - 1]);
 
     useEffect(() => {
@@ -54,7 +52,6 @@ const PinForm = props => {
 
         // replace what's inside createPin with 'data', before was: { creator_id, description, title, link }
         dispatch(createPin(data))
-        .then(() => console.log('pin created'))
         .catch(async res => {
             let data = await res.json();
             setErrors(data.errors);

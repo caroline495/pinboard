@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import NavBar from './components/NavBar'
 import PinForm from './components/PinForm'
-import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Outlet, RouterProvider, createBrowserRouter, useRouteError, isRouteErrorResponse } from 'react-router-dom'
 import UserProfile from './components/UserProfile'
 import BoardIndex from './components/BoardIndex'
 import PinIndex from './components/PinIndex'
@@ -21,6 +21,13 @@ function Layout() {
   )
 }
 
+function PageMissing() {
+  const error = useRouteError();
+  // if (isRouteErrorResponse(error)) 
+  //   console.log(`${error.status} ${error.statusText} ${error.data}`);
+  return <h2>Page Not Found</h2>;
+}
+
 const router = createBrowserRouter([
   {
    path: '/',
@@ -29,7 +36,13 @@ const router = createBrowserRouter([
       <NavBar />
       <Outlet />
     </>,
+    errorElement: <PageMissing />,
    children: [
+    {
+      index: true,
+      element:
+      <PinIndex />
+    },
     {
       path: 'pin-creation-tool',
       element: <PinForm />
@@ -41,6 +54,7 @@ const router = createBrowserRouter([
         <UserProfile />
         <Outlet />
       </>,
+      errorElement: <PageMissing />,
       children: [
         {
           index: true,
@@ -60,23 +74,29 @@ const router = createBrowserRouter([
           <>
             <PinIndex />
           </>
+        },
+        {
+          path: "*", 
+          element: <PageMissing />
         }
-        // {
-        //   path: ':name',
-        //   element: <BoardPage />
-        // }
       ]
     },
     {
       path: 'pin/:pinId/',
-      element: <PinPage />
+      element: <PinPage />,
+      errorElement: <PageMissing />
     },
     {
       path: 'board/:boardId',
-      element: <BoardPage />
+      element: <BoardPage />,
+      errorElement: <PageMissing />
     }
-   ] 
-  }
+   ]  
+  },
+   {
+      path: "*", 
+      element: <PageMissing />
+    }
 ]);
 
 function App() {

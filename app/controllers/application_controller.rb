@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::API # API controllers cannot serve up HTML
     include ActionController::RequestForgeryProtection
     protect_from_forgery with: :exception # enables CSRF protection, comment out to test in postman
 
