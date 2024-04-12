@@ -75,7 +75,7 @@ const BoardIndex = props => {
                     </div>  
     
                     <div className='board-status'>
-                        {hasBoards() ? '' : 'No boards created yet'}
+                        <span className='boards-created'>{hasBoards() ? '' : 'No boards created yet'}</span>
     
                         {/* <span className='board-count'>{hasBoards() ? `Boards: ${createdBoards.length}` : ''} </span> */}
                         <div className='all-boards'>
@@ -88,7 +88,7 @@ const BoardIndex = props => {
             </>
         )    
     }
-    
+
     return (
         <>
             {boardIndexView()}

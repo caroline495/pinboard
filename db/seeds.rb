@@ -10,22 +10,29 @@
 require 'open-uri'
 
 ApplicationRecord.transaction do 
-    puts "Destroying tables..."
+    # puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
     User.destroy_all
     Pin.destroy_all
   
-    puts "Resetting primary keys..."
+    # puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
     ApplicationRecord.connection.reset_pk_sequence!('users')
     ApplicationRecord.connection.reset_pk_sequence!('pins')
   
-    puts "Creating users..."
+    # puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
     user1 = User.create!(username: 'Demo-lition', email: 'demo@user.io', password: 'password')
     user2 = User.create!(username: 'green_yogi', email: 'greenyogi@user.io', password: 'password')
     user3 = User.create!(username: 'testUser7', email: 'testuser7@user.io', password: 'password')
   
+    board1 = Board.create!(creator_id: user3.id, description: 'healthy and delicious', name: 'mediterranean inspired foods', privateMode: true)
+    board2 = Board.create!(creator_id: user1.id, description: 'ilnp spring collection', name: 'ILNP spring', privateMode: false)
+    board3 = Board.create!(creator_id: user3.id, description: 'sanrio lovers unite!', name: 'hello kitty', privateMode: false)
+    board4 = Board.create!(creator_id: user3.id, description: 'brrr in Canada', name: 'Whistler', privateMode: false)
+    board5 = Board.create!(creator_id: user3.id, description: "uncle iroh's tea shop", name: 'tea', privateMode: false)
+    board6 = Board.create!(creator_id: user3.id, description: '', name: 'desserts', privateMode: true)
+    board7 = Board.create!(creator_id: user3.id, description: '', name: 'coffee', privateMode: false)
 
     pin1 = Pin.create!(creator_id: user1.id, description: 'testing', title: 'testing', link: "testing");
 
@@ -41,15 +48,15 @@ ApplicationRecord.transaction do
     file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/easy_caramel_latte.jpg')
     pin4.image.attach(io: file, filename: 'easy_caramel_latte.jpg');
 
-    pin5 = Pin.create!(creator_id: user3.id, description: 'mediterranean orzo salad recipe', title: 'Greek Orzo with Tomatoes, Olives, Basil, and Feta', link: 'https://juliasalbum.com/orzo-tomatoes-feta/');
+    pin5 = Pin.create!(creator_id: user3.id, description: 'mediterranean orzo salad recipe', title: 'Greek Orzo with Tomatoes, Olives, Basil, and Feta', link: 'https://juliasalbum.com/orzo-tomatoes-feta/', board_id: board1.id);
     file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/greek_orzo_tomatoes_feta.jpg')
     pin5.image.attach(io: file, filename: 'greek_orzo_tomatoes_feta.jpg');
 
-    pin6 = Pin.create!(creator_id: user3.id, description: 'Ever craved the crazy feta dip from Cava? Well now you can make it at home', title: 'Crazy Feta Dip - CAVA Copycat', link: 'https://moribyan.com/crazy-feta-dip-cava-copycat/');
+    pin6 = Pin.create!(creator_id: user3.id, description: 'Ever craved the crazy feta dip from Cava? Well now you can make it at home', title: 'Crazy Feta Dip - CAVA Copycat', link: 'https://moribyan.com/crazy-feta-dip-cava-copycat/', board_id: board1.id);
     file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/crazy_feta_dip_cava_copycat.jpg')
     pin6.image.attach(io: file, filename: 'crazy_feta_dip_cava_copycat.jpg');
 
-    pin7 = Pin.create!(creator_id: user3.id, description: '', title: 'Greek Chicken Meatballs', link: 'https://allthehealthythings.com/greek-chicken-meatballs/');
+    pin7 = Pin.create!(creator_id: user3.id, description: '', title: 'Greek Chicken Meatballs', link: 'https://allthehealthythings.com/greek-chicken-meatballs/', board_id: board1.id);
     file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/greek_chicken_meatball_bowls.jpg')
     pin7.image.attach(io: file, filename: 'greek_chicken_meatball_bowls.jpg');
 
@@ -62,7 +69,7 @@ ApplicationRecord.transaction do
     pin9.image.attach(io: file, filename: 'best_greek_salad.jpg');
 
     pin10 = Pin.create!(creator_id: user3.id, description: 'Vanilla lavender syrup to make lavender lattes!', title: 'Vanilla Lavender Syrup', link: 'https://www.lifewithtuyen.com/post/vanilla-lavender-syrup');
-    file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/vanilla_lavender_syrup.jpg')
+    file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/vanilla_lavender_syrup.jpg', board_id: board7.id)
     pin10.image.attach(io: file, filename: 'vanilla_lavender_syrup.jpg');
 
     pin11 = Pin.create!(creator_id: user3.id, description: 'celebrate spring with blackberry lavender scones', title: 'Blackberry Lavender White Chocolate Scones', link: 'https://www.halfbakedharvest.com/blackberry-lavender-white-chocolate-scones/');
@@ -73,11 +80,11 @@ ApplicationRecord.transaction do
     file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/lemon_garlic_baked_chicken_thighs.jpg')
     pin12.image.attach(io: file, filename: 'lemon_garlic_baked_chicken_thighs.jpg');
 
-    pin13 = Pin.create!(creator_id: user3.id, description: 'Delicious Thai dessert combining coconut rice + mango...', title: 'Mango Sticky Rice', link: 'https://elavegan.com/mango-sticky-rice-recipe/');
+    pin13 = Pin.create!(creator_id: user3.id, description: 'Delicious Thai dessert combining coconut rice + mango...', title: 'Mango Sticky Rice', link: 'https://elavegan.com/mango-sticky-rice-recipe/', board_id: board6.id);
     file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/mango_sticky_rice.jpg')
     pin13.image.attach(io: file, filename: 'mango_sticky_rice.jpg');
 
-    pin14 = Pin.create!(creator_id: user3.id, description: 'matcha jasmine cake with yuzu curd', title: 'Matcha Jasmine Cake with Yuzu Curd', link: 'https://www.siftandsimmer.com/matcha-jasmine-cake-with-yuzu-curd/');
+    pin14 = Pin.create!(creator_id: user3.id, description: 'matcha jasmine cake with yuzu curd', title: 'Matcha Jasmine Cake with Yuzu Curd', link: 'https://www.siftandsimmer.com/matcha-jasmine-cake-with-yuzu-curd/', board_id: board6.id);
     file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/matcha_jasmine_cake.jpg')
     pin14.image.attach(io: file, filename: 'matcha_jasmine_cake.jpg');
 
@@ -108,6 +115,9 @@ ApplicationRecord.transaction do
     pin21 = Pin.create!(creator_id: user2.id, description: 'From crate and barrel: tate dining table', title: 'modern dining room', link: 'https://www.crateandbarrel.com/tate-78-114-walnut-extendable-mid-century-dining-table/s683452');
     file = URI.open('https://pinboard-project-seeds.s3.us-west-1.amazonaws.com/crate_and_barrel_tate_dining_table.jpg')
     pin21.image.attach(io: file, filename: 'coastal_decor_living_room.jpg');
+    
+    
+    
     # More users
     # 10.times do 
     #   User.create!({
@@ -117,5 +127,4 @@ ApplicationRecord.transaction do
     #   }) 
     # end
   
-    puts "Done!"
   end

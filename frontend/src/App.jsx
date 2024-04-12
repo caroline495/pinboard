@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       <NavBar />
       <Outlet />
     </>,
-    errorElement: <PageMissing />,
+    // errorElement: <PageMissing />,
    children: [
     {
       index: true,
@@ -93,10 +93,10 @@ const router = createBrowserRouter([
     }
    ]  
   },
-   {
-      path: "*", 
-      element: <PageMissing />
-    }
+  //  {
+  //     path: "*", 
+  //     element: <PageMissing />
+  //   }
 ]);
 
 function App() {

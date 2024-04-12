@@ -38,7 +38,7 @@ const PinIndex = () => {
 
                 {/* <ul> */}
                     <div className='all-pins'>
-                    {pins.map(pin => showCurrentUserPin(pin))}
+                    {currentUser ? pins.map(pin => showCurrentUserPin(pin)) : ''}
                     </div>
                 {/* </ul> */}
             </div>

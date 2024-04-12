@@ -16,6 +16,7 @@ const PinEditModal = ({ modalState, setModalState}) => {
 
     const navigate = useNavigate();
     const currentUser = useSelector(selectCurrentUser);
+    const creatorId = currentUser.id;
     const username = currentUser.username;
 
     const handleDelete = e => {
@@ -26,7 +27,7 @@ const PinEditModal = ({ modalState, setModalState}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(updatePin({ ...pin, description, title, link}));
+        dispatch(updatePin({ ...pin, creatorId, description, title, link}));
         setModalState(false);
     }
     return (

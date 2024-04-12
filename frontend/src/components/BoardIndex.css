@@ -6,10 +6,18 @@
 .all-boards {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-evenly;
     /* align-self: center; */
     font-weight: 500;
     margin-top: 30px;
+}
+
+.board-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .board-count {
