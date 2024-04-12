@@ -16,32 +16,27 @@ const PinForm = props => {
     const [description, setDescription] = useState('');
     const [link, setLink] = useState('');
     const [image, setImage] = useState(null);
-    // const [board, setBoard] = useState('');
+    const [board, setBoard] = useState('');
     // const [taggedTopics, setTaggedTopics] = useState('');
 
     const [errors, setErrors] = useState({});
     const [pinCreated, setPinCreated] = useState(false);
-    console.log('***********page render********');
+    // console.log('***********page render********');
     const pins = useSelector(selectPins);
-    console.log(pins,'pins here');
+    // console.log(pins,'pins here');
     const [lastPin, setLastPin] = useState(pins[pins.length - 1]);
 
     useEffect(() => {
         dispatch(fetchPins())
         .then(()=> setLastPin(pins[pins.length - 1]));
-        console.log('hello');
     }, [])
 
     useEffect(()=> {
         if (pinCreated) {
             setLastPin(pins[pins.length - 1]);
-            console.log(lastPin,'last pin inside');
         }
     }, [pinCreated, pins]);
 
-    
-    // setLastPin();
-    console.log(lastPin,'last pin');
 
     const handlePinSubmit = e => {
         e.preventDefault();
@@ -52,6 +47,7 @@ const PinForm = props => {
         data.append('pin[description]', description);
         data.append('pin[title]', title);
         data.append('pin[link]', link);
+        data.append('pin[board_id]', board_id);
         if (image) {
             data.append('pin[image]', image)
         }

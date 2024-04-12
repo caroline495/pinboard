@@ -68,7 +68,7 @@ const PinPage = () => {
                         <div className='pin-display'>
                             <div className='pin-image-container'>
                                 <div className='pin-image'>
-                                    {pin.imageUrl && (<img className='pin-image' src={pin.imageUrl}/>)}
+                                    {pin?.imageUrl && (<img className='pin-image' src={pin?.imageUrl}/>)}
                                 </div>                                
                             </div>
 
@@ -122,9 +122,9 @@ const PinPage = () => {
                                     </div>        
 
                                     <div className='pin-details'>
-                                        <p className='pin-link'>{pin.link}</p>
-                                        <p className='pin-title'>{pin.title}</p>
-                                        <p className='pin-description'>{pin.description}</p>                                
+                                        <p className='pin-link'>{pin?.link}</p>
+                                        <p className='pin-title'>{pin?.title}</p>
+                                        <p className='pin-description'>{pin?.description}</p>                                
                                     
                                         <div className='pin-creator'>
                                             <div className='creator-circle' onClick={handleProfileClick}>

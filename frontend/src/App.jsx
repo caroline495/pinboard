@@ -9,6 +9,7 @@ import UserProfile from './components/UserProfile'
 import BoardIndex from './components/BoardIndex'
 import PinIndex from './components/PinIndex'
 import PinPage from './components/PinPage'
+import BoardPage from './components/BoardPage'
 
 function Layout() {
   return (
@@ -60,11 +61,19 @@ const router = createBrowserRouter([
             <PinIndex />
           </>
         }
+        // {
+        //   path: ':name',
+        //   element: <BoardPage />
+        // }
       ]
     },
     {
       path: 'pin/:pinId/',
       element: <PinPage />
+    },
+    {
+      path: 'board/:boardId',
+      element: <BoardPage />
     }
    ] 
   }

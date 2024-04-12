@@ -164,8 +164,6 @@ const SessionModal = ({ modalState, setModalState }) => {
             <div className='modal-background' onClick={e => setModalState(null)}>
                 <div className='modal-content' onClick={e => e.stopPropagation()}>
                     <div>
-
-                        **TESTING: {modalState}**
                         {formMode()}
                     </div>  
                 </div>

@@ -25,11 +25,15 @@ const NavBar = props => {
     }
 
     const handleProfileClick = () => {
+        if (dropdownOpen) {
+            setDropdownOpen(!dropdownOpen);
+        }
         navigate(`/${username}/`);
     }
 
     const handleLogoutClick = () => {
         dispatch(logoutUser());
+        setDropdownOpen(!dropdownOpen);
         navigate('/');
     }  
 

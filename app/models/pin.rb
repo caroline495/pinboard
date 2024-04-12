@@ -7,4 +7,7 @@ class Pin < ApplicationRecord
     belongs_to :creator,
         class_name: :User
 
+    belongs_to :board,
+        class_name: :Board
+        
 end

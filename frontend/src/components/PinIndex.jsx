@@ -28,7 +28,7 @@ const PinIndex = () => {
         } 
     }
 
-    console.log(pins, 'pins');
+    // console.log(pins, 'pins');
     return (
         <>
             <div className='pin-status'>

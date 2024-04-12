@@ -1,4 +1,5 @@
-.status {
+.board-status {
     align-self: center;
     font-weight: 500;
+    margin-top: 30px;
 }
