@@ -53,7 +53,6 @@ const BoardIndex = props => {
         return (
             <>
                 <div className='board-index-container'>
-                    
                     <div className='dropdown'>
                         <div className='pin-board-options' onClick={handleOpen}>
                             <svg aria-hidden="true" aria-label="" height="20" role="img" viewBox="0 0 24 24" width="20">
@@ -76,8 +75,7 @@ const BoardIndex = props => {
     
                     <div className='board-status'>
                         <span className='boards-created'>{hasBoards() ? '' : 'No boards created yet'}</span>
-    
-                        {/* <span className='board-count'>{hasBoards() ? `Boards: ${createdBoards.length}` : ''} </span> */}
+                        <span className='board-count'>{createdBoards ? `Boards: ${createdBoards.length}` : ''} </span>
                         <div className='all-boards'>
                             {hasBoards() ? createdBoards.map(board => showCurrentUserBoard(board)) : null}
                         </div>

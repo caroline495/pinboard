@@ -17,13 +17,15 @@ const PinIndex = () => {
     }, [])
 
     const showCurrentUserPin = (pin) => {
-        if (currentUser.id === pin.creatorId) {
+        if (currentUser?.id === pin.creatorId) {
             return (<PinIndexItem key={pin.id} pin={pin}/>)
         } 
     }
 
+    const createdPins = Object.values(pins).filter(pin => {if (currentUser?.id === pin.creatorId) return pin})
+
     const showAllOtherPin = (pin) => {
-        if (currentUser.id !== pin.creatorId) {
+        if (currentUser?.id !== pin.creatorId) {
             return (<PinIndexItem key={pin.id} pin={pin}/>)
         } 
     }
@@ -32,15 +34,11 @@ const PinIndex = () => {
     return (
         <>
             <div className='pin-status'>
-                {/* <br></br>
-                <br></br> */}
-                {/* No pins created yet */}
-
-                {/* <ul> */}
+            {/* <span className='pins-created'>{createdPins.length>0 ? '' : 'No pins created yet'}</span> */}
+                {/* <span className='pin-count'>{createdPins ? `Pins: ${createdPins.length}` : ''} </span> */}
                     <div className='all-pins'>
                     {currentUser ? pins.map(pin => showCurrentUserPin(pin)) : ''}
                     </div>
-                {/* </ul> */}
             </div>
         </>
     )
