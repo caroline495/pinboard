@@ -26,13 +26,13 @@ ApplicationRecord.transaction do
     user2 = User.create!(username: 'green_yogi', email: 'greenyogi@user.io', password: 'password')
     user3 = User.create!(username: 'testUser7', email: 'testuser7@user.io', password: 'password')
   
-    board1 = Board.create!(creator_id: user3.id, description: 'healthy and delicious', name: 'mediterranean inspired foods', privateMode: true)
-    board2 = Board.create!(creator_id: user1.id, description: 'ilnp spring collection', name: 'ILNP spring', privateMode: false)
-    board3 = Board.create!(creator_id: user3.id, description: 'sanrio lovers unite!', name: 'hello kitty', privateMode: false)
-    board4 = Board.create!(creator_id: user3.id, description: 'brrr in Canada', name: 'Whistler', privateMode: false)
-    board5 = Board.create!(creator_id: user3.id, description: "uncle iroh's tea shop", name: 'tea', privateMode: false)
-    board6 = Board.create!(creator_id: user3.id, description: '', name: 'desserts', privateMode: true)
-    board7 = Board.create!(creator_id: user3.id, description: '', name: 'coffee', privateMode: false)
+    board1 = Board.create!(creator_id: user3.id, description: 'healthy and delicious', name: 'mediterranean inspired foods', private_mode: true)
+    board2 = Board.create!(creator_id: user1.id, description: 'ilnp spring collection', name: 'ILNP spring', private_mode: false)
+    board3 = Board.create!(creator_id: user3.id, description: 'sanrio lovers unite!', name: 'hello kitty', private_mode: false)
+    board4 = Board.create!(creator_id: user3.id, description: 'brrr in Canada', name: 'Whistler', private_mode: false)
+    board5 = Board.create!(creator_id: user3.id, description: "uncle iroh's tea shop", name: 'tea', private_mode: false)
+    board6 = Board.create!(creator_id: user3.id, description: '', name: 'desserts', private_mode: true)
+    board7 = Board.create!(creator_id: user3.id, description: '', name: 'coffee', private_mode: false)
 
     pin1 = Pin.create!(creator_id: user1.id, description: 'testing', title: 'testing', link: "testing");
 
