@@ -1,24 +1,20 @@
-# README
+# Pinboard
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Background
+Pinboard is a Pinterest clone built on react and rails.
 
-Things you may want to cover:
+# Features
+In Pinboard, users are able to:
+- create, edit, and delete Pins
+- create, edit, and delete Boards that contain Pins
 
-* Ruby version
+# Technologies, Libraries, and APIs
+- React, rails, AWS S3
 
-* System dependencies
+# Implementation/Project Highlights
 
-* Configuration
+# Future Features
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Asset Attribution
+- SVG Elements and styling design taken from Pinterest
+- Images taken directly from linked blog/website in "pin"
