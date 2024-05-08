@@ -94,16 +94,18 @@ export const deleteBoard = (boardId) => dispatch => {
 export const selectBoards = createSelector(state => state.boards, boards => Object.values(boards));
 export const selectBoard = boardId => state => state.boards[boardId] ? state.boards[boardId] : null;
 
-// export const selectBoardbyName = createSelector(state => state.boards, boards => {
-//     const boardsArray = Object.values(boards);
-//     const boardsIds = boardsArray.map(board, idx => [board.name, board.id]);
-//     return boardsIds;
-// })
+export const selectBoardbyName = name = createSelector(state => state.boards, boards => {
+    return Object.values(boards).filter(board => name === board.name);
+})
 
-export const selectBoardbyName = name => state => {
-    const boardsArray = Object.values(state.boards);
-    return boardsArray.filter(board => { if (board.name === name) return board });
-}
+export const selectBoardbyUser = user => createSelector(state => state.boards, boards => {
+    return Object.values(boards).filter(el => el?.creatorId === user?.id)
+})
+
+// export const selectBoardbyName = name => state => {
+//     const boardsArray = Object.values(state.boards);
+//     return boardsArray.filter(board => { if (board.name === name) return board });
+// }
 
 // REDUCER
 const boardReducer = (state = {}, action) => {

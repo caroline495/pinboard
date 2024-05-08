@@ -70,7 +70,10 @@ export const createPin = (postData) => dispatch => {
                 throw res;
             }
         })
-        .then(data => dispatch(receivePin(data)))
+        .then(data => {
+            dispatch(receivePin(data))
+            return data
+        })
 }
 
 export const updatePin = (postData) => dispatch => {

@@ -138,12 +138,20 @@
     position: relative;
 }
 
+.pin-page-dropdown {
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    margin-left: 5px;
+}
+
 .pin-menu {
     position: absolute;
     top: 25px;
     /* width: 100px;  */
     right: -5px;
-    height: 70px;
+    /* height: 70px; */
     background-color: rgb(255, 255, 255);
     z-index: 100;
     border: 1px solid rgb(255, 255, 255);
@@ -160,11 +168,39 @@
 .menu-item-edit {
     cursor: pointer;
 }
+
 .menu-item-edit, .menu-item-logout {
     width: 140px;
     font-size: 18px;
     font-weight: 500;
     padding: 6px;
+}
+
+.menu-item-default {
+    min-width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-item-default:hover {
+    background-color:rgb(233, 233, 233) ;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.menu-save-pin-button {
+    margin-left: 10px;
+    /* margin-right: 5px; */
+    color: white;
+    border-radius: 24px;
+    width: 56px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(230, 0, 35);
 }
 
 .menu-item-edit {
