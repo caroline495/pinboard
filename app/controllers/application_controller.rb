@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::RequestForgeryProtection
-    protect_from_forgery with: :exception # enables CSRF protection
+    # protect_from_forgery with: :exception # enables CSRF protection, comment out to test in postman
 
     before_action :snake_case_params
     before_action :attach_authenticity_token

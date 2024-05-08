@@ -3,15 +3,77 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import NavBar from './components/NavBar'
+import PinForm from './components/PinForm'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import UserProfile from './components/UserProfile'
+import BoardIndex from './components/BoardIndex'
+import PinIndex from './components/PinIndex'
+import PinPage from './components/PinPage'
+
+function Layout() {
+  return (
+    <>
+      <NavBar />
+      <Outlet />    
+    </>
+
+  )
+}
+
+const router = createBrowserRouter([
+  {
+   path: '/',
+   element: 
+    <>
+      <NavBar />
+      <Outlet />
+    </>,
+   children: [
+    {
+      path: 'pin-creation-tool',
+      element: <PinForm />
+    },
+    {
+      path: ':username/',
+      element: 
+      <>
+        <UserProfile />
+        <Outlet />
+      </>,
+      children: [
+        {
+          index: true,
+          element:
+          <BoardIndex />
+        },
+        {
+          path: '_saved/',
+          element:
+          <>
+            <BoardIndex />
+          </>
+        },
+        {
+          path: '_created/',
+          element:
+          <>
+            <PinIndex />
+          </>
+        }
+      ]
+    },
+    {
+      path: 'pin/:pinId/',
+      element: <PinPage />
+    }
+   ] 
+  }
+]);
 
 function App() {
   
+  return <RouterProvider router={router} />
 
-  return (
-    <>
-     <NavBar />
-    </>
-  )
 }
 
 export default App
