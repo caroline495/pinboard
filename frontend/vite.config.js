@@ -6,10 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://locahost:3000'
+      '/api': 'http://localhost:5000'
     }
-  },
-  build: { 
-    outDir: '../public' 
   }
+  // build: { 
+  //   outDir: '../public' 
+  // }
 })

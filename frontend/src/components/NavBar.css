@@ -1,0 +1,241 @@
+nav {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif;
+}
+
+.logo {
+    /* width: 35px;
+    height: auto; */
+    margin-left: 15px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+.pinterest-logo {
+    fill: rgb(230, 0, 35);
+}
+
+/* -- FOR NOT SIGNED IN NAV BAR -- */
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.pinboard-title {
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.left-buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+}
+
+.left-inner-button, .right-inner-button {
+    margin-right: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    width: 62px;
+}
+
+.left-inner-button-explore {
+    margin-right: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    width: 73px;
+}
+
+.right-inner-button-business {
+    margin-right: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    width: 80px;
+}
+
+.left-inner-button:hover, .left-inner-button-explore:hover {
+    background-color: rgb(226, 226, 226);
+    border-radius: 8px;
+}
+
+.right-inner-button:hover, .right-inner-button-business:hover {
+    text-decoration: underline;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.right-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.login-button {
+    background-color: rgb(230, 0, 35);
+    /* border-radius: px; */
+    color:white;
+    font-weight: 600;
+    margin-right: 8px;
+    width: 70px;
+    height: 40px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.signup-button {
+    background-color: rgb(233, 233, 233);
+    font-weight: 600;
+    margin-right: 8px;
+    width: 81px;
+    height: 40px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+h1 {
+    color:rgb(204, 0, 0);
+    font-size: 20px;
+}
+
+/* ----- FOR LOGGED IN USER NAV BAR ----- */
+
+.search-bar {
+    width: 55%;
+    height: 47px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 100%;
+    background-color: rgb(241, 241, 241);
+    border-radius: 24px;
+    border-style: none;
+    padding-left: 15px;
+}
+
+.login-text-button {
+    cursor: pointer;
+    margin-right: 6px;
+    font-weight: 500;
+}
+
+.login-icon-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.icon-button {
+    margin: 15px;
+    cursor: pointer;
+}
+
+.notifications-logo, .messages-logo {
+    fill: rgb(118, 118, 118);
+}
+
+.circle-button {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgb(233, 233, 233);
+    border: 2px solid rgb(17, 17, 17);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.dropdown-button {
+    width: 22px;
+    margin: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-button:hover {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background-color: rgb(233, 233, 233);
+}
+
+/* .dropdown-content {
+    width: 25px;
+    height: 25px;
+    background-color: aquamarine; 
+
+} */
+
+.dropdown {
+    position: relative;
+}
+.menu {
+    position: absolute;
+    top: 50px;
+    /* width: 100px;  */
+    right: 0px;
+    height: 125px;
+    /* background-color: aquamarine; */
+    z-index: 100;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
+}
+
+li {
+    list-style-type: none;
+}
+.menu-item-account, .menu-item-logout {
+    width: 275px;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 8px;
+    /* height: 20px; */
+    /* background-color: yellow; */
+    padding: 8px;
+}
+
+.menu-item-account {
+    background-color:rgb(233, 233, 233);
+    border-radius: 8px;
+    
+}
+
+.menu-item-logout{
+    cursor: pointer;
+}
+
+.menu-email {
+    margin-top: 5px;
+    color:rgb(118, 118, 118);
+    font-size: 14px;
+}
