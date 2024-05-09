@@ -3,7 +3,7 @@
     width: 100vw;
     background-color: rgba(25,25,25,.62);
     padding: 20px;
-    position: absolute;
+    position: fixed;
     /* top: 0px;
     left: 0px; */
     z-index: 10;

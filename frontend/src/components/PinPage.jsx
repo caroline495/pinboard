@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import './PinPage.css';
 import PinEditModal from "./PinEditModal";
-import { fetchBoards, selectBoardbyUser } from "../store/boardReducer";
+import { fetchBoards, selectBoardbyUser, selectBoard } from "../store/boardReducer";
 
 const PinPage = () => {
     const navigate = useNavigate();
@@ -16,21 +16,49 @@ const PinPage = () => {
     const [optionsDropdownOpen, setOptionsDropdownOpen] = useState(false);
     const [boardsDropdownOpen, setBoardsDropdownOpen] = useState(false);
     const [modalState, setModalState] = useState(false);
-   
+    const [boardIdHover, setBoardIdHover] = useState('');
 
     const username = currentUser.username;
     const pin = useSelector(selectPin(pinId));
     
     const boards = useSelector(selectBoardbyUser(currentUser));
-    console.log(boards, 'select board');
+    console.log('hello');
+    // console.log(boards, 'beginning select board');
 
+    const sortBoardsByName = (boards) => {
+        // sorting the array of board objects by name alphabetically, regardless of case
+        const copy = boards.slice()
+        return copy.sort((a, b) => {
+            if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return -1;
+            } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        })
+    }
+    
     useEffect(() => {
         dispatch(fetchPin(pinId));
     }, [dispatch, pinId]);
 
-    console.log(pin?.boardId, 'pin.boardId');
-    const [boardId, setBoardId] = useState(pin?.boardId);
-    console.log(boardId, 'initial board id');
+    const board = useSelector(selectBoard(pin?.boardId));
+    // console.log(board, 'board');
+    // console.log(pin?.boardId, 'pin.boardId');
+    
+
+    const sortCurrentBoardFirst = (boards) => {
+    
+        const copy = boards.slice();
+        const currentFirst = copy[0];
+        const boardIndex = copy.indexOf(board);
+        copy[0] = board;
+        copy[boardIndex] = currentFirst;
+        const res = [copy[0], ...sortBoardsByName(copy.splice(1))];
+        return res;
+    }
+    //console.log(sortCurrentBoardFirst(boards), 'board sorting test');
     
     useEffect(() => {
         dispatch(fetchBoards());
@@ -52,15 +80,32 @@ const PinPage = () => {
         setBoardsDropdownOpen(!boardsDropdownOpen);
     }
 
-    const handleSaveToBoard = (e, boardId) => {
+    const handleSaveToBoard = (e, board_id) => {
         e.preventDefault();
-        setBoardId(boardId);
-        // console.log(e.target.value, 'e.target.value');
-        console.log(boardId, 'board id');
-        dispatch(updatePin({ ...pin, boardId}));
+        dispatch(updatePin({ ...pin, board_id}));
         setBoardsDropdownOpen(!boardsDropdownOpen);
     }
 
+    const handleHoverOverBoard = (e, board_id) => {
+        e.stopPropagation();
+        setBoardIdHover(board_id);
+        showSaveButton()
+    }
+
+    const handleHoverOutOverBoard = () => {
+        setBoardIdHover('');
+    }
+
+    const showSaveButton = () => {
+        return (
+            <>
+                <div className='menu-save-pin-button' >
+                    <span>Save</span>
+                </div>
+            </>
+        )
+    }
+    
     const handleEditOpen = () => {
         setModalState(true);
         setOptionsDropdownOpen(false);
@@ -140,12 +185,11 @@ const PinPage = () => {
                                         </div>
 
                                         <div className='pin-top-right'>
-                                            {/* <span>Pin: {pinId}-</span> */}
                                             
                                             <div className='dropdown'>
                                             
                                                 <div className='pin-page-dropdown' onClick={handleBoardsOpen}>
-                                                    <span> Boards</span>
+                                                    <span>{board?.name}</span>
                                                     <svg className='dropdown-arrow' aria-hidden="true" height="12" role="img" viewBox="0 0 24 24" width="12">
                                                         <path d="M20.16 6.65 12 14.71 3.84 6.65a2.27 2.27 0 0 0-3.18 0 2.2 2.2 0 0 0 0 3.15L12 21 23.34 
                                                         9.8a2.2 2.2 0 0 0 0-3.15 2.26 2.26 0 0 0-3.18 0"></path>
@@ -154,22 +198,41 @@ const PinPage = () => {
                                                 {boardsDropdownOpen ?
                                                     (
                                                         <div className='pin-menu'>
-                                                            {boards?.map((board, idx) => 
-                                                                <li className='menu-item-default' key={idx} onClick={e => handleSaveToBoard(e, board.id)}>
-                                                                    <div>{board.name}</div>
-                                                                    <div className='menu-save-pin-button' >
-                                                                        <span>Save</span>
-                                                                    </div> 
-                                                                </li>)}
-                                                            
+                                                            {sortCurrentBoardFirst(boards)?.map((board, idx) => {
+                                                                    if (idx ===0) {
+                                                                        return ( 
+                                                                        <>
+                                                                        {/* <div className="saved-text">Saved here:</div> */}
+                                                                        <li className='menu-item-first' key={idx}>
+                                                                            <div className="dropdown-board-name">{board.name}</div>
+                                                                                <div className='menu-saved-pin-button'>
+                                                                                    <span>Saved</span>
+                                                                                </div>
+                                                                        </li>
+                                                                        {/* <div className="other-boards-text">Other Boards:</div> */}
+                                                                        </>
+                                                                        )
+                                                                    } else {
+                                                                        return ( 
+                                                                            <li className='menu-item-default' key={idx} 
+                                                                            onMouseOver={e => handleHoverOverBoard(e, board.id)} 
+                                                                            onMouseOut={handleHoverOutOverBoard} 
+                                                                            onClick={e => handleSaveToBoard(e, board.id)}>
+                                                                                <div className="dropdown-board-name">{board.name}</div>
+                                                                                {boardIdHover === board.id && showSaveButton()}
+                                                                            </li>
+                                                                            )
+                                                                    }
+                                                                }
+                                                                )}
                                                         </div>
                                                     ) : <div></div>}
                                             </div>
 
 
-                                            <div className='save-pin-button'>
+                                            {/* <div className='save-pin-button'>
                                                 <span>Save</span>
-                                            </div>                                        
+                                            </div>                                         */}
                                         </div>
                                     </div>        
 

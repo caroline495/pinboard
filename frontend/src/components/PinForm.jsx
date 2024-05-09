@@ -149,16 +149,16 @@ const PinForm = props => {
                                 
                                 <label>
                                     <div className='pinform-input-label'>Board </div>
-                                    <select onChange={e => setBoardId(e.target.value)}>
-                                        <option value='hello'>''</option>
-                                        {boards?.map((board, idx) => <option key={idx} value={board.id}> {board.name} </option>)}
+                                    <select className='menu-item-default' onChange={e => setBoardId(e.target.value)}>
+                                        <option value=''>Select a board</option>
+                                        {boards?.map((board, idx) => <option className='menu-item-default' key={idx} value={board.id}> {board.name} </option>)}
                                     </select>
                                 </label>
 
-                                <label>
+                                {/* <label>
                                     <div className='pinform-input-label'>Tagged topics </div>
                                     <input className='pinform-input' placeholder='Search for a tag'/>
-                                </label>
+                                </label> */}
                             </div>
 
                         </div>
