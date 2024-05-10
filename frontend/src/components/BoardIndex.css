@@ -51,17 +51,15 @@
     margin-bottom: 4px;
 }
 
-.menu-item-create-board {
-    cursor: pointer;
-}
 .menu-item-create-board, .menu-item-create-pin {
     width: 140px;
     font-size: 18px;
     font-weight: 500;
     padding: 6px;
+    cursor: pointer;
 }
 
-.menu-item-create-board {
+.menu-item-create-board:hover, .menu-item-create-pin:hover {
     background-color:rgb(233, 233, 233);
     border-radius: 8px;
 }

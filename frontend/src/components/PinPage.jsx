@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import './PinPage.css';
 import PinEditModal from "./PinEditModal";
 import { fetchBoards, selectBoardbyUser, selectBoard } from "../store/boardReducer";
+import {sortBoardsByName, sortCurrentBoardFirst} from "../utils/boardsUtils"
 
 const PinPage = () => {
     const navigate = useNavigate();
@@ -22,43 +23,12 @@ const PinPage = () => {
     const pin = useSelector(selectPin(pinId));
     
     const boards = useSelector(selectBoardbyUser(currentUser));
-    console.log('hello');
-    // console.log(boards, 'beginning select board');
-
-    const sortBoardsByName = (boards) => {
-        // sorting the array of board objects by name alphabetically, regardless of case
-        const copy = boards.slice()
-        return copy.sort((a, b) => {
-            if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                return -1;
-            } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                return 1;
-            } else {
-                return 0;
-            }
-        })
-    }
     
     useEffect(() => {
         dispatch(fetchPin(pinId));
     }, [dispatch, pinId]);
 
     const board = useSelector(selectBoard(pin?.boardId));
-    // console.log(board, 'board');
-    // console.log(pin?.boardId, 'pin.boardId');
-    
-
-    const sortCurrentBoardFirst = (boards) => {
-    
-        const copy = boards.slice();
-        const currentFirst = copy[0];
-        const boardIndex = copy.indexOf(board);
-        copy[0] = board;
-        copy[boardIndex] = currentFirst;
-        const res = [copy[0], ...sortBoardsByName(copy.splice(1))];
-        return res;
-    }
-    //console.log(sortCurrentBoardFirst(boards), 'board sorting test');
     
     useEffect(() => {
         dispatch(fetchBoards());
@@ -199,7 +169,7 @@ const PinPage = () => {
                                                     (
                                                         <div className='pin-menu'>
                                                             {/* <div className="saved-text">Saved here:</div> */}
-                                                            {sortCurrentBoardFirst(boards)[0] && 
+                                                            {sortCurrentBoardFirst(boards, board)[0] && 
                                                                 <li className='menu-item-first'>
                                                                     <div className="dropdown-board-name">{board.name}</div>
                                                                     <div className='menu-saved-pin-button'>
@@ -208,7 +178,7 @@ const PinPage = () => {
                                                                 </li>}
                                                             {/* <div className="other-boards-text">Other Boards:</div> */}
                                                             
-                                                            {sortCurrentBoardFirst(boards).slice(1)?.map((board, idx) =>       
+                                                            {sortCurrentBoardFirst(boards, board).slice(1)?.map((board, idx) =>       
                                                                 <li className='menu-item-default' key={idx}
                                                                     onMouseOver={e => handleHoverOverBoard(e, board.id)}
                                                                     onMouseOut={handleHoverOutOverBoard}

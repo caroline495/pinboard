@@ -82,6 +82,20 @@
     padding: 10px;
 }
 
+.pin-edit-menu {
+    position: absolute;
+    top: 25px;
+    /* width: 100px;  */
+    right: -5px;
+    /* height: 70px; */
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
+    padding: 8px;
+    /* overflow: scroll; */
+}
 
 .edit-form-bottom-part {
     display: flex;

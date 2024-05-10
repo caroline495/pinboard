@@ -20,32 +20,22 @@ const PinForm = props => {
     const [boardId, setBoardId] = useState('');
     // const [taggedTopics, setTaggedTopics] = useState('');
 
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({});    
+    const hasErrors = !!Object.entries(errors).length;
+
     const [pinCreated, setPinCreated] = useState(false);
-    // const pins = useSelector(selectPins);
-    // const [lastPin, setLastPin] = useState(pins[pins.length - 1]);
     const [lastPinId, setLastPinId] = useState('');
     const boards = useSelector(selectBoardbyUser(currentUser));
     const [boardsDropdownOpen, setBoardsDropdownOpen] = useState(false);
 
+
     const handleBoardsOpen = () => {
         setBoardsDropdownOpen(!boardsDropdownOpen);
     }
-    // useEffect(() => {
-    //     dispatch(fetchPins())
-    //     .then(()=> setLastPin(pins[pins.length - 1]));
-    // }, [])
 
     useEffect(() => {
         dispatch(fetchBoards());
     }, []);
-
-    useEffect(()=> {
-        if (pinCreated) {
-            // setLastPin(pins[pins.length - 1]);
-        }
-    }, [pinCreated]);
-
 
     const handlePinSubmit = e => {
         e.preventDefault();
@@ -77,12 +67,9 @@ const PinForm = props => {
         .catch(async res => {
             let data = await res.json();
             setErrors(data.errors);
+            console.log(data.errors, 'data.errors')
           });
 
-        // setTitle('');
-        // setDescription('');
-        // setLink('');
-        // setBoardId('');
     }
 
     const handleFile = e => {
@@ -119,15 +106,17 @@ const PinForm = props => {
                             <div className="image-upload-section">
                                 <div className='image-upload-header'></div>                                   
                                 <div className='image-upload-description'>
-                                    <svg aria-label="Add files" height="32" role="img" viewBox="0 0 24 24" width="32">
+                                    <svg className="image-upload-icon" height="32" width="32" role="img" viewBox="0 0 24 24" >
                                         <path d="M24 12a12 12 0 1 0-24 0 12 12 0 0 0 24 0m-10.77 3.75a1.25 1.25 0 0 1-2.5 0V11.8L9.7 12.83a1.25 1.25 0 0 1-1.77-1.77L12 7l4.07 4.06a1.25 1.25 0 0 1-1.77 1.77l-1.07-1.06z"></path>
                                     </svg>
                                     <div className='choose-file-line'>Choose a file and upload it here</div>
+                                {hasErrors && <div className='errors'><p>{errors.image}</p></div>}
                                 </div>
                                 <input className='image-upload-input' type='file' onChange={handleFile} />
 
                             </div>
-                        
+                            
+
                             <div className='form-text-input'>
                                 <label>
                                     <div className='pinform-input-label'>Title </div>
@@ -154,7 +143,7 @@ const PinForm = props => {
                                         {boards?.map((board, idx) => <option className='menu-item-default' key={idx} value={board.id}> {board.name} </option>)}
                                     </select>
                                 </label>
-
+                                {hasErrors && <div className='errors'><p>{errors.board_id}</p></div>}
                                 {/* <label>
                                     <div className='pinform-input-label'>Tagged topics </div>
                                     <input className='pinform-input' placeholder='Search for a tag'/>

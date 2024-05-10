@@ -6,11 +6,13 @@ import { useEffect, useState } from 'react';
 import BoardIndexItem from './BoardIndexItem';
 import { selectPins } from '../store/pinReducer';
 import BoardCreateModal from './BoardCreateModal';
+import { useNavigate } from 'react-router-dom';
 
 const BoardIndex = props => {
     const dispatch = useDispatch();
     const boards = useSelector(selectBoards);
     const currentUser = useSelector(selectCurrentUser);
+    const navigate = useNavigate();
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [modalState, setModalState] = useState(false);
@@ -49,6 +51,10 @@ const BoardIndex = props => {
         setDropdownOpen(false);
     }
 
+    const handleCreatePin = () => {
+        navigate(`/pin-creation-tool`);
+    }
+
     const boardIndexView = () => {
         return (
             <>
@@ -67,7 +73,7 @@ const BoardIndex = props => {
                                     </li>
 
                                     <li className='menu-item-create-pin' >
-                                        <div>Create Pin</div>
+                                        <div onClick={handleCreatePin}>Create Pin</div>
                                     </li>
                                 </div>
                             ) : <div></div>}

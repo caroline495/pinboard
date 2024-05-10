@@ -38,6 +38,7 @@ class Api::BoardsController < ApplicationController
             render :show
         else
             if @board
+                # updated this to just @board.errors so could show custom message for unique scope without "name" in front
                 render json: { errors: @board.errors }, status: 422
             else
                 render json: ['No board found'], status: 404
