@@ -15,9 +15,7 @@ const BoardCreateModal = ({ modalState, setModalState}) => {
     const [privateMode, setPrivateMode] = useState(false);
     const [errors, setErrors] = useState({});
 
-    //const hasErrors = !!Object.entries(errors).length;
-    //console.log(hasErrors, 'hasErrors')
-    console.log(errors, 'errors'); // for testing 
+    const hasErrors = !!Object.entries(errors).length;
 
     const handleBoardSubmit = e => {
         e.preventDefault();
@@ -30,12 +28,10 @@ const BoardCreateModal = ({ modalState, setModalState}) => {
         })
         .catch(async res => {
             let data = await res.json();
-            console.log(data.errors, 'data.errors');
             setErrors(data.errors);
           });
         
     }
-    // console.log(errors);
     
     return (
         <>
@@ -58,7 +54,7 @@ const BoardCreateModal = ({ modalState, setModalState}) => {
                                     <div className='board-form-input-label'>Name </div>
                                     <input className='board-form-input' placeholder='Like "Places to Go" or "Recipes to Make"' value={name} onChange={e => setName(e.target.value)} />
                                 </label>
-
+                                {hasErrors && <div className='errors'><p>{errors[0]}</p></div>}
                                 <label>
                                     <div className='board-form-input-label'>Keep this board secret</div>
                                     <span>Only you and collaborators can see it</span>

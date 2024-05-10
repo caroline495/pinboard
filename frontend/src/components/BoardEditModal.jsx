@@ -13,21 +13,27 @@ const BoardEditModal = ({ modalState, setModalState}) => {
     const [name, setName] = useState(board.name);
     const [description, setDescription] = useState(board.description);
     const [private_mode, setPrivateMode] = useState(board.privateMode);
+    const [errors, setErrors] = useState({});
 
+    const hasErrors = !!Object.entries(errors).length;
     const navigate = useNavigate();
     const currentUser = useSelector(selectCurrentUser);
     const username = currentUser.username;
 
     const handleDelete = e => {
         e.preventDefault();
-        navigate(`/${username}`);
         dispatch(deleteBoard(boardId))
+            .then(() => navigate(`/${username}`));
     }   
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(updateBoard({ ...board, description, name, private_mode}));
-        setModalState(false);
+        dispatch(updateBoard({ ...board, description, name, private_mode}))
+            .then(() => setModalState(false))
+            .catch(async res => {
+                let data = await res.json();
+                setErrors(data.errors);
+              });
     }
 
     return (
@@ -47,12 +53,13 @@ const BoardEditModal = ({ modalState, setModalState}) => {
                         <form className='edit-pin-form'>
                             <div className='edit-form-text-input'>
                                 <label>
-                                    <div className='edit-pinform-input-label'>Name </div>
-                                    <input className='edit-pinform-input' placeholder='Add a name' value={name} onChange={e => setName(e.target.value)} />
+                                    <div className='edit-board-input-label'>Name </div>
+                                    <input className='edit-board-input' placeholder='Add a name' value={name} onChange={e => setName(e.target.value)} />
                                 </label>
+                                {hasErrors && <div className='errors'><p>{errors.name}</p></div>}
 
                                 <label>
-                                        <div className='edit-pinform-input-label'>Description </div>
+                                        <div className='edit-board-input-label'>Description </div>
                                         <textarea className='edit-pinform-description-input'
                                             placeholder='What is your board about?' value={description}
                                             onChange={e => setDescription(e.target.value)} />                                        

@@ -198,41 +198,31 @@ const PinPage = () => {
                                                 {boardsDropdownOpen ?
                                                     (
                                                         <div className='pin-menu'>
-                                                            {sortCurrentBoardFirst(boards)?.map((board, idx) => {
-                                                                    if (idx ===0) {
-                                                                        return ( 
-                                                                        <>
-                                                                        {/* <div className="saved-text">Saved here:</div> */}
-                                                                        <li className='menu-item-first' key={idx}>
-                                                                            <div className="dropdown-board-name">{board.name}</div>
-                                                                                <div className='menu-saved-pin-button'>
-                                                                                    <span>Saved</span>
-                                                                                </div>
-                                                                        </li>
-                                                                        {/* <div className="other-boards-text">Other Boards:</div> */}
-                                                                        </>
-                                                                        )
-                                                                    } else {
-                                                                        return ( 
-                                                                            <li className='menu-item-default' key={idx} 
-                                                                            onMouseOver={e => handleHoverOverBoard(e, board.id)} 
-                                                                            onMouseOut={handleHoverOutOverBoard} 
-                                                                            onClick={e => handleSaveToBoard(e, board.id)}>
-                                                                                <div className="dropdown-board-name">{board.name}</div>
-                                                                                {boardIdHover === board.id && showSaveButton()}
-                                                                            </li>
-                                                                            )
-                                                                    }
-                                                                }
-                                                                )}
+                                                            {/* <div className="saved-text">Saved here:</div> */}
+                                                            {sortCurrentBoardFirst(boards)[0] && 
+                                                                <li className='menu-item-first'>
+                                                                    <div className="dropdown-board-name">{board.name}</div>
+                                                                    <div className='menu-saved-pin-button'>
+                                                                        <span>Saved</span>
+                                                                    </div>
+                                                                </li>}
+                                                            {/* <div className="other-boards-text">Other Boards:</div> */}
+                                                            
+                                                            {sortCurrentBoardFirst(boards).slice(1)?.map((board, idx) =>       
+                                                                <li className='menu-item-default' key={idx}
+                                                                    onMouseOver={e => handleHoverOverBoard(e, board.id)}
+                                                                    onMouseOut={handleHoverOutOverBoard}
+                                                                    onClick={e => handleSaveToBoard(e, board.id)}>
+                                                                    <div className="dropdown-board-name">{board.name}</div>
+                                                                    {boardIdHover === board.id && showSaveButton()}
+                                                                </li>
+                                                            )}
                                                         </div>
                                                     ) : <div></div>}
                                             </div>
-
-
                                             {/* <div className='save-pin-button'>
                                                 <span>Save</span>
-                                            </div>                                         */}
+                                            </div> */}
                                         </div>
                                     </div>        
 

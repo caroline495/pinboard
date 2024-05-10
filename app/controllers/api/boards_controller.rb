@@ -23,7 +23,11 @@ class Api::BoardsController < ApplicationController
         if @board.save
             render :show
         else
-            render json: @board.errors.full_messages, status: 422
+            # Original: just displayed an array of the error message (only one error message)
+            # render json: @board.errors.full_messages, status: 422
+
+            # When we write it like this, what is produced is an object with a key of errors that has an array of the error messages as its value
+            render json: { errors: @board.errors.full_messages }, status: 422
         end
 
     end
@@ -34,7 +38,7 @@ class Api::BoardsController < ApplicationController
             render :show
         else
             if @board
-                render json: @board.errors.full_messages, status: 422
+                render json: { errors: @board.errors }, status: 422
             else
                 render json: ['No board found'], status: 404
             end

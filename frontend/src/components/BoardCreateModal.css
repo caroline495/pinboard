@@ -46,7 +46,7 @@
 .board-form-input-label{
     font-size: 14px;
     font-weight: 300;
-    margin-top: 0px;
+    margin-top: 14px;
     margin-left: 4px;
     margin-bottom: 4px;
 }
@@ -58,11 +58,10 @@
     border-radius: 16px;
     font-size: 16px;  
     text-indent: 2%;
-    margin-bottom: 12px;
+    margin-bottom: 0px;
     padding: 0;
     margin-left: 0;
     margin-right: 0;
-
 }
 
 .create-form-bottom-part {
