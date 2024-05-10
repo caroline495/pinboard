@@ -44,7 +44,17 @@ const SessionModal = ({ modalState, setModalState }) => {
         }
     }
     
+    const handleDemoLogin = (e) => {
+        e.preventDefault();
+        dispatch((loginUser({ email: "testuser7@user.io", password: "password"})))
+        .then(()=>setModalState(null))
+    }
     
+    const handleDemoLogin2 = (e) => {
+        e.preventDefault();
+        dispatch((loginUser({ email: "greenyogi@user.io", password: "password"})))
+        .then(()=>setModalState(null))
+    }
     const formMode = () => {
         if (modalState === 'signup') {
             return (
@@ -91,12 +101,12 @@ const SessionModal = ({ modalState, setModalState }) => {
                         
                         <button id='signup-submit' className='form-submit-button' type='submit'>Continue</button>
                         <div className='or-break'><span>OR</span></div>
-                        <div className='fake-google-button'><span>Continue with Google</span></div>
+                        <div className='fake-google-button' onClick={handleDemoLogin}><span>Continue as Demo User 1</span></div>
 
-                        <div className='disclosure-text'>By continuing, you agree to Pinterest's <span className='disclosure-text-inline'>Terms of Service</span> and acknowledge you've read our 
+                        <div className='disclosure-text'>By continuing, you agree to Pinboard's <span className='disclosure-text-inline'>Terms of Service</span> and acknowledge you've read our 
                                 <span className='disclosure-text-inline'> Privacy Policy. Notice at collection.</span></div>    
-                        <div className='signup-bottom-text'>Already a member? Log in</div>
-                        <div className='create-business-account'><span>Create a free business account</span></div>
+                        <div className='signup-bottom-text'>Already a member? <span onClick={() => setModalState('login')} className='modal-signup-link'>Log In</span></div>
+                        {/* <div className='create-business-account'><span>Create a free business account</span></div> */}
                     </form>   
                 </>
             )
@@ -138,13 +148,13 @@ const SessionModal = ({ modalState, setModalState }) => {
                             
                             <div className='or-break'><span>OR</span></div>
                             
-                            <div className='fake-facebook-button'><span>Continue with Facebook</span></div>
-                            <div className='fake-google-button'><span>Continue with Google</span></div>
-                            <div className='disclosure-text'>By continuing, you agree to Pinterest's <span className='disclosure-text-inline'>Terms of Service</span> and acknowledge you've read our 
+                            <button className='fake-facebook-button' onClick={handleDemoLogin}><span>Continue as Demo User 1</span></button>
+                            <div className='fake-google-button' onClick={handleDemoLogin2}><span>Continue as Demo User 2</span></div>
+                            <div className='disclosure-text'>By continuing, you agree to Pinboard's <span className='disclosure-text-inline'>Terms of Service</span> and acknowledge you've read our 
                                 <span className='disclosure-text-inline'> Privacy Policy. Notice at collection.</span></div>    
                             <div className='line-after-disclosure'></div>
-                            <div className='bottom-text'>Not on Pinterest yet? Sign up</div>
-                            <div className='bottom-text-business'>Are you a business? Get Started here!</div>
+                            <div className='bottom-text'>Not on Pinboard yet? <span onClick={() => setModalState('signup')} className='modal-signup-link'>Sign up</span></div>
+                            {/* <div className='bottom-text-business'>Are you a business? Get Started here!</div> */}
                             
                         </form>   
                         

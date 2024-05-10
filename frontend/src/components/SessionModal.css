@@ -130,8 +130,8 @@ p {
 
 .fake-facebook-button {
     background-color: rgb(24, 119, 242);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    letter-spacing: 0.1px;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    /* letter-spacing: 0.1px; */
     color: white;
     font-size: 15px;
     font-weight: 600;
@@ -144,6 +144,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .fake-google-button {
@@ -158,6 +159,7 @@ p {
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .disclosure-text {
@@ -181,10 +183,14 @@ p {
 
 .bottom-text {
     font-size: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     font-weight: 600;
 }
 
+.modal-signup-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
 .bottom-text-business {
     font-size: 12px;
     margin-bottom: 0px;
@@ -200,9 +206,8 @@ p {
 .signup-bottom-text {
     font-size: 12px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     font-weight: 600;
-    /* height: 20px; add */
 }
 
 .create-business-account {

@@ -55,7 +55,7 @@ const NavBar = props => {
                     <div className='login-text-button'><span>Home</span></div>
                     <div className='login-text-button'><span>Explore</span></div>
                    <NavLink to="/pin-creation-tool">
-                    <div className='login-text-button'><span>Create</span></div>
+                    <div className='login-create-button'><span>Create</span></div>
                     </NavLink>
                    
                     <div className='search-bar'>
@@ -92,7 +92,7 @@ const NavBar = props => {
                                     <div className='menu'>
                                         
                                         <li className='menu-item-account' onClick={handleProfileClick}>
-                                            <div className='menu-account' >Account: {currentUser.username}</div>
+                                            <div className='menu-account'>Account: {currentUser.username}</div>
                                             <div className='menu-email'>{currentUser.email}</div>
                                         </li>
 
@@ -140,8 +140,8 @@ const NavBar = props => {
                     <div className='right'>
                         <div className='right-buttons'>
                             <div className='right-inner-button'>About</div>
-                            <div className='right-inner-button-business'>Business</div>
-                            <div className='right-inner-button'>Blog</div>
+                            <div className='right-inner-button-business'><a href='https://www.linkedin.com/in/carolineczhang/'>LinkedIn</a></div>
+                            <div className='right-inner-button'><a href='https://github.com/caroline495'>Github</a></div>
                         </div>
                         <div className='login-button' onClick={() => setModalState('login')}>
                             <span>Log in</span>

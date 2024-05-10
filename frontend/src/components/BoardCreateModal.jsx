@@ -13,21 +13,30 @@ const BoardCreateModal = ({ modalState, setModalState}) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [privateMode, setPrivateMode] = useState(false);
+    const [errors, setErrors] = useState({});
+
+    //const hasErrors = !!Object.entries(errors).length;
+    //console.log(hasErrors, 'hasErrors')
+    console.log(errors, 'errors'); // for testing 
 
     const handleBoardSubmit = e => {
         e.preventDefault();
 
         // replace what's inside createPin with 'data', before was: { creator_id, description, title, link }
         dispatch(createBoard({'board': { creator_id, description, name, privateMode}, 'pins': {}}))
+        .then(()=> {
+            setModalState(false);
+            navigate(`/boards/`);
+        })
         .catch(async res => {
             let data = await res.json();
+            console.log(data.errors, 'data.errors');
             setErrors(data.errors);
           });
         
-        setModalState(false);
-        navigate(`/boards/`);
     }
-
+    // console.log(errors);
+    
     return (
         <>
             <div className='board-create-modal-background' onClick={e => setModalState(false)}>
@@ -53,7 +62,7 @@ const BoardCreateModal = ({ modalState, setModalState}) => {
                                 <label>
                                     <div className='board-form-input-label'>Keep this board secret</div>
                                     <span>Only you and collaborators can see it</span>
-                                    <input className='check' type='checkbox' checked={privateMode} onChange={e => setPrivateMode(e.target.value)} />
+                                    <input className='check' type='checkbox' checked={privateMode} onChange={e => setPrivateMode(e.target.checked)} />
                                 </label>
                             </div>
                         </form>

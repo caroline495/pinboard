@@ -12,7 +12,7 @@ const BoardEditModal = ({ modalState, setModalState}) => {
 
     const [name, setName] = useState(board.name);
     const [description, setDescription] = useState(board.description);
-    const [privateMode, setPrivateMode] = useState(board.privateMode);
+    const [private_mode, setPrivateMode] = useState(board.privateMode);
 
     const navigate = useNavigate();
     const currentUser = useSelector(selectCurrentUser);
@@ -26,14 +26,10 @@ const BoardEditModal = ({ modalState, setModalState}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(updateBoard({ ...board, description, name, privateMode}));
+        dispatch(updateBoard({ ...board, description, name, private_mode}));
         setModalState(false);
     }
 
-    const handleChange = e => {
-        e.preventDefault();
-        setPrivateMode(e.target.value);
-    }
     return (
         <>
             <div className='pin-edit-modal-background' onClick={e => setModalState(false)}>
@@ -65,7 +61,7 @@ const BoardEditModal = ({ modalState, setModalState}) => {
                                 <label>
                                     <div className='pinform-input-label'>Keep this board secret</div>
                                     <span>So only you and collaborators can see it</span>
-                                    <input className='check' type='checkbox' checked={privateMode} onChange={e => setPrivateMode(e.target.value)} />
+                                    <input className='check' type='checkbox' checked={private_mode} onChange={e => {setPrivateMode(e.target.checked)}} />
                                 </label>
                             </div>
                        </form>
