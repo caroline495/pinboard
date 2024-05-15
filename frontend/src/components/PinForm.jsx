@@ -67,7 +67,7 @@ const PinForm = props => {
         .catch(async res => {
             let data = await res.json();
             setErrors(data.errors);
-            console.log(data.errors, 'data.errors')
+            // console.log(data.errors, 'data.errors')
           });
 
     }
