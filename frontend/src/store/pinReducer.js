@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+import { csrfFetch } from '../utils/csrfUtils';
+import { RECEIVE_BOARD } from './boardReducer';
 
 // TYPES
 export const RECEIVE_PIN = 'RECEIVE_PIN';
@@ -49,7 +51,7 @@ export const fetchPins = () => dispatch => {
 
 // we do not stringify formData
 export const createPin = (postData) => dispatch => {
-    return fetch(`/api/pins`, {
+    return csrfFetch(`/api/pins`, {
         method: 'POST',
         // change to body: postData, headers: { 'Accept': 'application/json' } for formData 
         // body: JSON.stringify(postData),
@@ -68,11 +70,14 @@ export const createPin = (postData) => dispatch => {
                 throw res;
             }
         })
-        .then(data => dispatch(receivePin(data)))
+        .then(data => {
+            dispatch(receivePin(data))
+            return data
+        })
 }
 
 export const updatePin = (postData) => dispatch => {
-    return fetch(`/api/pins/${postData.id}`, {
+    return csrfFetch(`/api/pins/${postData.id}`, {
         method: 'PATCH',
         body: JSON.stringify(postData),
         headers: {
@@ -90,7 +95,7 @@ export const updatePin = (postData) => dispatch => {
 }
 
 export const deletePin = (pinId) => dispatch => {
-    return fetch(`/api/pins/${pinId}`, { method: 'DELETE' })
+    return csrfFetch(`/api/pins/${pinId}`, { method: 'DELETE' })
         .then(() => dispatch(removePin(pinId)))
 }
 
@@ -112,6 +117,8 @@ const pinReducer = (state= {}, action) => {
         case REMOVE_PIN:
             delete nextState[action.pinId];
             return nextState;
+        case RECEIVE_BOARD:
+            return action.boardData.pins ||= nextState;
         default:
             return state;
     }

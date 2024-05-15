@@ -21,7 +21,9 @@ class Api::PinsController < ApplicationController
         if @pin.save
             render :show
         else
-            render json: @pin.errors.full_messages, status: 422
+            error_hash = @pin.errors.group_by_attribute.transform_values { |errors| errors.map(&:message) }
+            render json: { errors: error_hash }, status: :unprocessable_entity # status 422 too
+            # render json: {errors: @pin.errors.full_messages}, status: 422
         end
 
     end
@@ -48,7 +50,7 @@ class Api::PinsController < ApplicationController
     private
 
     def pin_params
-        params.require(:pin).permit(:id, :creator_id, :description, :title, :link, :image)
+        params.require(:pin).permit(:id, :creator_id, :description, :title, :link, :image, :board_id, :imageUrl)
     end
 
 end

@@ -1,28 +1,39 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { selectCurrentUser } from '../store/sessionReducer';
-import pinReducer, { receivePins, selectPins, selectPin, fetchPin } from "../store/pinReducer";
+import pinReducer, { receivePins, selectPins, selectPin, fetchPin, updatePin } from "../store/pinReducer";
 import { useEffect, useState } from "react";
 
 import './PinPage.css';
 import PinEditModal from "./PinEditModal";
+import { fetchBoards, selectBoardbyUser, selectBoard } from "../store/boardReducer";
+import {sortBoardsByName, sortCurrentBoardFirst} from "../utils/boardsUtils"
 
 const PinPage = () => {
     const navigate = useNavigate();
     const currentUser = useSelector(selectCurrentUser);
     const dispatch = useDispatch();
     const { pinId } = useParams();
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [optionsDropdownOpen, setOptionsDropdownOpen] = useState(false);
+    const [boardsDropdownOpen, setBoardsDropdownOpen] = useState(false);
     const [modalState, setModalState] = useState(false);
+    const [boardIdHover, setBoardIdHover] = useState('');
 
     const username = currentUser.username;
     const pin = useSelector(selectPin(pinId));
-
+    
+    const boards = useSelector(selectBoardbyUser(currentUser));
+    
     useEffect(() => {
         dispatch(fetchPin(pinId));
     }, [dispatch, pinId]);
 
-    // console.log(pin);
+    const board = useSelector(selectBoard(pin?.boardId));
+    
+    useEffect(() => {
+        dispatch(fetchBoards());
+    }, []);
+
     const handleBackClick = () => {
         navigate(`/${username}/_created`);
     }
@@ -31,14 +42,45 @@ const PinPage = () => {
         navigate(`/${username}/`);
     }
 
-    const handleOpen = () => {
-        setDropdownOpen(!dropdownOpen);
+    const handleOptionsOpen = () => {
+        setOptionsDropdownOpen(!optionsDropdownOpen);
     }
 
+    const handleBoardsOpen = () => {
+        setBoardsDropdownOpen(!boardsDropdownOpen);
+    }
+
+    const handleSaveToBoard = (e, board_id) => {
+        e.preventDefault();
+        dispatch(updatePin({ ...pin, board_id}));
+        setBoardsDropdownOpen(!boardsDropdownOpen);
+    }
+
+    const handleHoverOverBoard = (e, board_id) => {
+        e.stopPropagation();
+        setBoardIdHover(board_id);
+        showSaveButton()
+    }
+
+    const handleHoverOutOverBoard = () => {
+        setBoardIdHover('');
+    }
+
+    const showSaveButton = () => {
+        return (
+            <>
+                <div className='menu-save-pin-button' >
+                    <span>Save</span>
+                </div>
+            </>
+        )
+    }
+    
     const handleEditOpen = () => {
         setModalState(true);
-        setDropdownOpen(false);
+        setOptionsDropdownOpen(false);
     }
+
 
     const pinPageView = () => {
         return (
@@ -68,7 +110,7 @@ const PinPage = () => {
                         <div className='pin-display'>
                             <div className='pin-image-container'>
                                 <div className='pin-image'>
-                                    {pin.imageUrl && (<img className='pin-image' src={pin.imageUrl}/>)}
+                                    {pin?.imageUrl && (<img className='pin-image' src={pin?.imageUrl}/>)}
                                 </div>                                
                             </div>
 
@@ -86,21 +128,21 @@ const PinPage = () => {
                                             </div>
 
                                             <div className='dropdown'>
-                                                <div className='pin-more-options' onClick={handleOpen}>
+                                                <div className='pin-page-dropdown' onClick={handleOptionsOpen}>
                                                 <svg aria-hidden="true" aria-label="" height="20" role="img" viewBox="0 0 24 24" width="20">
                                                     <path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6M3 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6m18 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6"></path>
                                                 </svg>
                                                 </div>
-                                                {dropdownOpen ?
+                                                {optionsDropdownOpen ?
                                                     (
                                                         <div className='pin-menu'>
                                                             <li className='menu-item-edit' >
                                                                 <div onClick={handleEditOpen}>Edit Pin</div>
                                                             </li>
 
-                                                            <li className='menu-item-download' >
+                                                            {/* <li className='menu-item-default' >
                                                                 <div>Download Image</div>
-                                                            </li>
+                                                            </li> */}
                                                         </div>
                                                     ) : <div></div>}
                                             </div>
@@ -113,18 +155,51 @@ const PinPage = () => {
                                         </div>
 
                                         <div className='pin-top-right'>
-                                            <span>Pin: {pinId}-</span>
-                                            <span> Boards</span>
-                                            <div className='save-pin-button'>
+                                            
+                                            <div className='dropdown'>
+                                            
+                                                <div className='pin-page-dropdown' onClick={handleBoardsOpen}>
+                                                    <span>{board?.name}</span>
+                                                    <svg className='dropdown-arrow' aria-hidden="true" height="12" role="img" viewBox="0 0 24 24" width="12">
+                                                        <path d="M20.16 6.65 12 14.71 3.84 6.65a2.27 2.27 0 0 0-3.18 0 2.2 2.2 0 0 0 0 3.15L12 21 23.34 
+                                                        9.8a2.2 2.2 0 0 0 0-3.15 2.26 2.26 0 0 0-3.18 0"></path>
+                                                    </svg>
+                                                </div>
+                                                {boardsDropdownOpen ?
+                                                    (
+                                                        <div className='pin-menu'>
+                                                            {/* <div className="saved-text">Saved here:</div> */}
+                                                            {sortCurrentBoardFirst(boards, board)[0] && 
+                                                                <li className='menu-item-first'>
+                                                                    <div className="dropdown-board-name">{board.name}</div>
+                                                                    <div className='menu-saved-pin-button'>
+                                                                        <span>Saved</span>
+                                                                    </div>
+                                                                </li>}
+                                                            {/* <div className="other-boards-text">Other Boards:</div> */}
+                                                            
+                                                            {sortCurrentBoardFirst(boards, board).slice(1)?.map((board, idx) =>       
+                                                                <li className='menu-item-default' key={idx}
+                                                                    onMouseOver={e => handleHoverOverBoard(e, board.id)}
+                                                                    onMouseOut={handleHoverOutOverBoard}
+                                                                    onClick={e => handleSaveToBoard(e, board.id)}>
+                                                                    <div className="dropdown-board-name">{board.name}</div>
+                                                                    {boardIdHover === board.id && showSaveButton()}
+                                                                </li>
+                                                            )}
+                                                        </div>
+                                                    ) : <div></div>}
+                                            </div>
+                                            {/* <div className='save-pin-button'>
                                                 <span>Save</span>
-                                            </div>                                        
+                                            </div> */}
                                         </div>
                                     </div>        
 
                                     <div className='pin-details'>
-                                        <p className='pin-link'>{pin.link}</p>
-                                        <p className='pin-title'>{pin.title}</p>
-                                        <p className='pin-description'>{pin.description}</p>                                
+                                        <p className='pin-link'>{pin?.link}</p>
+                                        <p className='pin-title'>{pin?.title}</p>
+                                        <p className='pin-description'>{pin?.description}</p>                                
                                     
                                         <div className='pin-creator'>
                                             <div className='creator-circle' onClick={handleProfileClick}>

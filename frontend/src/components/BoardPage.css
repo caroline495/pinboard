@@ -1,0 +1,82 @@
+.board-page-header {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.board-page-title-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.no-pins-status {
+    margin-top: 10px;
+    align-self: center;
+}
+
+.all-pins-in-board {
+    display: flex;
+    /* border: 1px solid blue; */
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-left: 30px;
+    padding-right: 30px;
+    /* flex: 1 1 auto; */
+}
+
+.board-options {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgb(233, 233, 233);
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.board-menu {
+    position: absolute;
+    top: 40px;
+    /* width: 100px;  */
+    right: -5px;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
+    padding: 8px;
+}
+
+.board-menu li {
+    list-style-type: none;
+    margin-bottom: 4px;
+}
+
+.menu-item-edit {
+    cursor: pointer;
+}
+.menu-item-edit, .menu-item-share {
+    width: 140px;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 6px;
+}
+
+.menu-item-edit {
+    background-color:rgb(233, 233, 233);
+    border-radius: 8px;
+}

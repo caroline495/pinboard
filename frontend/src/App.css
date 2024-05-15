@@ -14,6 +14,10 @@ html {
   margin: 0;
   height: 100%;
 }
+
+h2 {
+  align-self: center;
+}
 /* #root {
   max-width: 1280px;
   margin: 0 auto;

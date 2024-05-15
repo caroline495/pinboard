@@ -1,0 +1,40 @@
+.board-index-link {
+    /* border: 1px solid blue; */
+    height:400px;
+    width: 230px;
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 0px;
+    margin-right: 0px;
+    /* overflow: clip; */
+}
+
+.board-index-image-container {
+    height: 350px;
+    /* width: fit-content;  */
+    border-radius: 16px;
+    background-color:lightgray;
+    margin-bottom: 6px;
+    /* border: 1px solid yellowgreen; */
+    display: flex;
+    justify-content: center;
+    
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    max-width: 100%;
+    height: auto;
+}
+
+.board-index-image {
+    /* max-width: fit-content; */
+    /* width: auto; */
+    /* height: 350px; */
+    border-radius: 16px;
+    /* flex: 1 1 auto; */
+    
+}

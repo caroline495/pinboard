@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_065620) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_12_155027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_065620) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "boards", force: :cascade do |t|
+    t.bigint "creator_id", null: false
+    t.text "description"
+    t.string "name", null: false
+    t.boolean "private_mode", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id", "name"], name: "index_boards_on_creator_id_and_name", unique: true
+  end
+
   create_table "pins", force: :cascade do |t|
     t.bigint "creator_id", null: false
     t.text "description"
@@ -49,6 +59,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_065620) do
     t.text "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "board_id"
+    t.index ["board_id"], name: "index_pins_on_board_id"
     t.index ["creator_id"], name: "index_pins_on_creator_id"
   end
 
@@ -66,5 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_065620) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "boards", "users", column: "creator_id"
+  add_foreign_key "pins", "boards"
   add_foreign_key "pins", "users", column: "creator_id"
 end

@@ -1,5 +1,5 @@
 nav {
-    height: 80px;
+    min-height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
@@ -141,6 +141,16 @@ h1 {
 }
 
 .login-text-button {
+    font-weight: 500;
+    height: 48px;
+    width: 82px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-create-button {
     cursor: pointer;
     font-weight: 500;
     height: 48px;
@@ -172,7 +182,7 @@ a {
 
 .icon-button {
     margin: 15px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .notifications-logo, .messages-logo {

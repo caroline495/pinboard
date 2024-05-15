@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import './PinIndexItem.css';
 
 const PinIndexItem = ({pin}) => {
-    // console.log(pin);
+
     const navigate = useNavigate();
     
     // const handleClick = () => {

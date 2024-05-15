@@ -8,6 +8,7 @@ import { restoreSession } from './utils/csrfUtils.js'
 import { postUser, postSession, deleteSession } from './utils/sessionApiUtils.js'
 import { createUser, loginUser, logoutUser } from './store/sessionReducer.js'
 import { fetchPin, fetchPins, createPin, updatePin, deletePin } from './store/pinReducer.js'
+import { fetchBoard, fetchBoards, createBoard, updateBoard, deleteBoard } from './store/boardReducer.js'
 
 const initializeApp = () => {
   const store = configureStore();
@@ -23,6 +24,12 @@ const initializeApp = () => {
   window.createPin = createPin;
   window.updatePin = updatePin;
   window.deletePin = deletePin;
+
+  window.fetchBoard = fetchBoard;
+  window.fetchBoards = fetchBoards;
+  window.createBoard = createBoard;
+  window.updateBoard = updateBoard;
+  window.deleteBoard = deleteBoard;
   //
 
   ReactDOM.createRoot(document.getElementById('root')).render(

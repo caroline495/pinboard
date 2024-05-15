@@ -69,7 +69,7 @@
 }
 
 .image-upload-description {
-    height: 70px;
+    /* height: 70px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,6 +115,11 @@
 }
 /* .pinform-description-input::placeholder {
     
+} */
+
+/* .menu-item-default {
+    width: 150px;
+    height: 40px;
 } */
 
 .pinform-input {

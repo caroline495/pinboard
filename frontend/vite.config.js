@@ -9,8 +9,9 @@ export default defineConfig({
       '/api': 'http://localhost:5000',
       '/rails': 'http://localhost:5000'
     }
+  },
+  build: { 
+    outDir: '../public',
+    emptyOutDir:true
   }
-  // build: { 
-  //   outDir: '../public' 
-  // }
 })

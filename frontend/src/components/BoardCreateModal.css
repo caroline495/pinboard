@@ -1,0 +1,86 @@
+.board-create-modal-background {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(25,25,25,.85);
+    position: fixed; 
+    /* left: 0;
+    /* position: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-create-modal-content {
+    height: 400px;
+    width: 540px;
+    align-self: center;
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    border-radius: 32px;
+}
+
+.board-create {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+
+.create-board-header {
+    font-size: 26px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-edit-button {
+    cursor: pointer;
+}
+
+.board-form-input-label{
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 14px;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+.board-form-input {
+    height: 42px;
+    width: 488px;
+    border:2px solid rgb(205, 205, 205);
+    border-radius: 16px;
+    font-size: 16px;  
+    text-indent: 2%;
+    margin-bottom: 0px;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.create-form-bottom-part {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.create-board-button {
+    margin-left: 10px;
+    color: white;
+    border-radius: 24px;
+    width: 68px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(230, 0, 35);
+}
+
+.create-board-button{
+    cursor: pointer;
+}

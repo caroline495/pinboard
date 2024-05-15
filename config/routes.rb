@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :users, only: :create
     resource :session, only: [:show, :create, :destroy]
     resources :pins, only: [:index, :show, :create, :update, :destroy]
+    resources :boards, only: [:index, :show, :create, :update, :destroy]
   end
 
+  get '*path', to: 'static_pages#frontend'
+  
 end
