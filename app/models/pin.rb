@@ -1,6 +1,6 @@
 class Pin < ApplicationRecord
     
-    # validate :require_image
+    validate :require_image
     # validates :creator_id, presence: true
     validates :board_id, presence: {message: 'Please select a board for your pin'}
     # validates :board_id, allow_nil: true
