@@ -27,6 +27,8 @@ Non users can login as Demo User 1 (testuser7) or Demo User 2 (green_yogi) to vi
 
 ![Screenshot 2024-05-17 at 10 49 05 PM](https://github.com/caroline495/pinboard/assets/141605699/bea3073a-069c-4d97-b821-5973329751a2)
 ![Screenshot 2024-05-17 at 10 49 18 PM](https://github.com/caroline495/pinboard/assets/141605699/78f6d896-7b69-4372-94ed-f6373bf3e759)
+<img src="https://github.com/caroline495/pinboard/assets/141605699/78f6d896-7b69-4372-94ed-f6373bf3e759" width="400px">
+![Screenshot 2024-05-17 at 10 49 18 PM](frontend/src/assets/Pinterest-logo.png)
 
 
 #### Create and Edit Pins
