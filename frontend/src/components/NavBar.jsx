@@ -59,7 +59,7 @@ const NavBar = props => {
                     </NavLink>
                    
                     <div className='search-bar'>
-                        <input className='search-bar' placeholder='Search your Pins'/>
+                        <input className='search-bar' placeholder='Search your Pins    [search function in progress]'/>
                     </div>
 
                     <div className='login-icon-buttons'>

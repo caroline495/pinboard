@@ -234,7 +234,7 @@ const PinPage = () => {
                                             <div className='creator-circle'>
                                                 <span>{username[0].toUpperCase()}</span>
                                             </div>
-                                            <input className='add-comment-bar' placeholder='Add a comment'/>
+                                            <input className='add-comment-bar' placeholder='Add a comment [work in progress]'/>
                                         </div>
                                     </div>
                                 </div>
