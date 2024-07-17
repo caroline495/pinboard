@@ -53,9 +53,8 @@ const PinEditModal = ({ modalState, setModalState}) => {
 
     const handleDelete = e => {
         e.preventDefault();
-        dispatch(deletePin(pinId))
+        dispatch(deletePin(pinId));
         navigate(`/${username}/_created`);
-        
     }   
 
     const handleSubmit = e => {
